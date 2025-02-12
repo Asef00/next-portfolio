@@ -1,15 +1,20 @@
 'use client'
 
 import { useState } from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { useActiveSection } from '../hooks/useActiveSection'
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const pathname = usePathname()
+  const activeSection = useActiveSection()
 
-  const isActive = (path: string) => {
-    return pathname === path ? "text-orange-500" : "hover:text-gray-400"
+  const scrollToSection = (sectionId: string) => {
+    setIsMenuOpen(false)
+    const element = document.getElementById(sectionId)
+    element?.scrollIntoView({ behavior: 'smooth' })
+  }
+
+  const isActive = (sectionId: string) => {
+    return activeSection === sectionId ? "text-orange-500" : "hover:text-gray-400"
   }
 
   return (
@@ -32,57 +37,51 @@ export default function Navigation() {
       </button>
 
       {/* Navigation */}
-      <nav className={`fixed md:relative w-full md:w-[280px] h-screen bg-gray-600 md:bg-black border-r border-gray-600 text-black md:text-white text-2xl md:text-base p-6 
+      <nav className={`fixed w-full md:w-[280px] h-screen bg-gray-600 md:bg-black border-r border-gray-600 text-black md:text-white text-2xl md:text-base p-6 
         transform ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 transition-transform
-        ${isMenuOpen ? 'z-40' : ''}`}>
+        ${isMenuOpen ? 'z-40' : 'z-30'}`}>
         <div className="flex flex-col h-full md:justify-center justify-end">
           <div className="space-y-6">
-            <Link 
-              href="/about" 
-              className={`block ${isActive('/about')}`} 
-              onClick={() => setIsMenuOpen(false)}
+            <button 
+              onClick={() => scrollToSection('about')}
+              className={`block w-full text-left ${isActive('about')}`}
             >
               About
-            </Link>
+            </button>
             
             <div className="space-y-3">
-              <Link 
-                href="/uiux" 
-                className={`block ${isActive('/uiux')}`} 
-                onClick={() => setIsMenuOpen(false)}
+              <button 
+                onClick={() => scrollToSection('uiux')}
+                className={`block w-full text-left ${isActive('uiux')}`}
               >
                 UI/UX Design
-              </Link>
-              <Link 
-                href="/graphic-design" 
-                className={`block ${isActive('/graphic-design')}`} 
-                onClick={() => setIsMenuOpen(false)}
+              </button>
+              <button 
+                onClick={() => scrollToSection('graphic-design')}
+                className={`block w-full text-left ${isActive('graphic-design')}`}
               >
                 Graphic Designs
-              </Link>
-              <Link 
-                href="/paintings" 
-                className={`block ${isActive('/paintings')}`} 
-                onClick={() => setIsMenuOpen(false)}
+              </button>
+              <button 
+                onClick={() => scrollToSection('paintings')}
+                className={`block w-full text-left ${isActive('paintings')}`}
               >
                 Paintings and Printmaking
-              </Link>
-              <Link 
-                href="/illustrations" 
-                className={`block ${isActive('/illustrations')}`} 
-                onClick={() => setIsMenuOpen(false)}
+              </button>
+              <button 
+                onClick={() => scrollToSection('illustrations')}
+                className={`block w-full text-left ${isActive('illustrations')}`}
               >
                 Illustrations
-              </Link>
+              </button>
             </div>
             
-            <Link 
-              href="/contact" 
-              className={`block ${isActive('/contact')}`} 
-              onClick={() => setIsMenuOpen(false)}
+            <button 
+              onClick={() => scrollToSection('contact')}
+              className={`block w-full text-left ${isActive('contact')}`}
             >
               Contact me
-            </Link>
+            </button>
           </div>
         </div>
       </nav>
