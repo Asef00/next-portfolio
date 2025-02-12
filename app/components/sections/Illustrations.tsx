@@ -1,28 +1,20 @@
 'use client'
 
 import SectionLayout from '../layouts/SectionLayout'
+import SeeMoreLink from '../ui/SeeMoreLink'
 
 export default function Illustrations() {
   const leftContent = (
     <>
-      <p>Your illustrations descriptions here...</p>
-      {/* Add more content as needed */}
+      <h2 className="text-section-heading">Illustrations</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip e
+      </p>
+      <SeeMoreLink />
     </>
   )
 
-  const rightContent = (
-    <>
-      {/* Add your illustrations gallery/images */}
-      Illustrations content...
-    </>
-  )
-
-  return (
-    <SectionLayout
-      id="illustrations"
-      title="Illustrations"
-      leftContent={leftContent}
-      rightContent={rightContent}
-    />
-  )
-} 
+  return <SectionLayout id="illustrations" leftContent={leftContent} />
+}
