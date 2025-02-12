@@ -1,28 +1,20 @@
 'use client'
 
 import SectionLayout from '../layouts/SectionLayout'
+import SeeMoreLink from '../ui/SeeMoreLink'
 
 export default function GraphicDesign() {
   const leftContent = (
     <>
-      <p>Your graphic design descriptions here...</p>
-      {/* Add more content as needed */}
+      <h2 className="text-section-heading">Graphic designs</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip e
+      </p>
+      <SeeMoreLink />
     </>
   )
 
-  const rightContent = (
-    <>
-      {/* Add your graphic design portfolio/images */}
-      Portfolio content...
-    </>
-  )
-
-  return (
-    <SectionLayout
-      id="graphic-design"
-      title="Graphic Designs"
-      leftContent={leftContent}
-      rightContent={rightContent}
-    />
-  )
-} 
+  return <SectionLayout id="graphic-design" leftContent={leftContent} />
+}
