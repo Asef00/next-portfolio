@@ -1,28 +1,54 @@
-'use client'
-
 import SectionLayout from '../layouts/SectionLayout'
 
 export default function Contact() {
   const leftContent = (
     <>
-      <p>Contact information and details...</p>
-      {/* Add contact information or form */}
+      <h2 className="text-section-heading text-black">Contact me</h2>
+      <p className="text-black">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+      </p>
     </>
   )
 
   const rightContent = (
     <>
-      {/* Add complementary content, social links, or a contact form */}
-      Contact form or additional information...
+      <div className="flex flex-col gap-4">
+        {/* email */}
+        <div>
+          <h3 className="font-medium">Email</h3>
+          <a
+            href="mailto:reza.hmoqadam@gmail.com"
+            className="hover:text-orange-500 transition-colors"
+            aria-label="Email me at reza.hmoqadam@gmail.com"
+          >
+            Reza.hmoqadam@gmail.com
+          </a>
+        </div>
+        {/* phone number */}
+        <div>
+          <h3 className="font-medium">Phone</h3>
+          <a
+            href="tel:+989365227382"
+            className="hover:text-orange-500 transition-colors"
+            aria-label="Call me at +98 936 5227382"
+          >
+            +98 936 5227382
+          </a>
+        </div>
+        {/* social */}
+      </div>
     </>
   )
 
   return (
-    <SectionLayout
-      id="contact"
-      title="Contact me"
-      leftContent={leftContent}
-      rightContent={rightContent}
-    />
+    <div className="bg-white">
+      <SectionLayout
+        id="contact"
+        leftContent={leftContent}
+        rightContent={rightContent}
+        className="text-black"
+      />
+    </div>
   )
-} 
+}
