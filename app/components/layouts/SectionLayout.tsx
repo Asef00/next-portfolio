@@ -2,14 +2,12 @@
 
 interface SectionLayoutProps {
   id: string
-  title?: string
   leftContent: React.ReactNode
   rightContent?: React.ReactNode
 }
 
 export default function SectionLayout({
   id,
-  title,
   leftContent,
   rightContent,
 }: SectionLayoutProps) {
@@ -22,14 +20,13 @@ export default function SectionLayout({
         <div className="flex flex-col md:flex-row md:space-x-12 space-y-8 md:space-y-0">
           {/* Left Column */}
           <div className="w-full md:w-1/2 flex justify-center flex-col">
-            {title && <h2 className="text-4xl font-bold mb-8">{title}</h2>}
-            <div className="space-y-4">{leftContent}</div>
+            {leftContent}
           </div>
 
           {/* Right Column */}
           {rightContent && (
             <div className="w-full md:w-1/2 flex justify-center flex-col">
-              <div className="h-full">{rightContent}</div>
+              {rightContent}
             </div>
           )}
         </div>
