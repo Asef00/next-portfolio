@@ -18,7 +18,7 @@ export default function About() {
 
   const rightContent = (
     <>
-      <h1 className="text-[80px]">
+      <h1 className="text-section-heading">
         Reza
         <br />
         Moghadam
