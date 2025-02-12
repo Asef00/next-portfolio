@@ -1,4 +1,5 @@
 import SectionLayout from '../layouts/SectionLayout'
+import SocialLink from '../ui/SocialLink'
 
 export default function Contact() {
   const leftContent = (
@@ -37,6 +38,26 @@ export default function Contact() {
           </a>
         </div>
         {/* social */}
+        <div>
+          <h3 className="font-medium mb-2">Social</h3>
+          <div className="flex gap-3">
+            <SocialLink
+              href="https://github.com/yourusername"
+              iconName="github"
+              label="Visit my GitHub profile"
+            />
+            <SocialLink
+              href="https://linkedin.com/in/yourusername"
+              iconName="linkedin"
+              label="Visit my LinkedIn profile"
+            />
+            <SocialLink
+              href="https://twitter.com/yourusername"
+              iconName="twitter"
+              label="Visit my Twitter profile"
+            />
+          </div>
+        </div>
       </div>
     </>
   )
