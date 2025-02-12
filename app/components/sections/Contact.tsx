@@ -1,9 +1,18 @@
+import Image from 'next/image'
 import SectionLayout from '../layouts/SectionLayout'
 import SocialLink from '../ui/SocialLink'
 
 export default function Contact() {
   const leftContent = (
     <>
+      <Image
+        src="/about.jpg"
+        alt="contact art"
+        width={627}
+        height={589}
+        className="absolute -top-1/2"
+        priority
+      />
       <h2 className="text-section-heading text-black">Contact me</h2>
       <p className="text-black">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -68,7 +77,7 @@ export default function Contact() {
         id="contact"
         leftContent={leftContent}
         rightContent={rightContent}
-        className="text-black"
+        className="text-black relative"
       />
     </div>
   )
