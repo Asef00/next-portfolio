@@ -4,7 +4,7 @@ interface SectionLayoutProps {
   id: string
   title?: string
   leftContent: React.ReactNode
-  rightContent: React.ReactNode
+  rightContent?: React.ReactNode
 }
 
 export default function SectionLayout({
@@ -27,9 +27,11 @@ export default function SectionLayout({
           </div>
 
           {/* Right Column */}
-          <div className="w-full md:w-1/2 flex justify-center flex-col">
-            <div className="h-full">{rightContent}</div>
-          </div>
+          {rightContent && (
+            <div className="w-full md:w-1/2 flex justify-center flex-col">
+              <div className="h-full">{rightContent}</div>
+            </div>
+          )}
         </div>
       </div>
     </section>
