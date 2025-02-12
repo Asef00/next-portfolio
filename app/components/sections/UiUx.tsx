@@ -1,12 +1,10 @@
-'use client'
-
 import SectionLayout from '../layouts/SectionLayout'
 import SeeMoreLink from '../ui/SeeMoreLink'
 
 export default function UiUx() {
   const leftContent = (
     <>
-      <h1 className="text-section-heading">UI / UX Design</h1>
+      <h2 className="text-section-heading">UI / UX Design</h2>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -16,7 +14,5 @@ export default function UiUx() {
     </>
   )
 
-  return (
-    <SectionLayout id="uiux" title="UI/UX Design" leftContent={leftContent} />
-  )
+  return <SectionLayout id="uiux" leftContent={leftContent} />
 }
