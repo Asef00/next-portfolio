@@ -1,12 +1,28 @@
 'use client'
 
+import SectionLayout from '../layouts/SectionLayout'
+
 export default function About() {
+  const leftContent = (
+    <>
+      <p>Your about content goes here...</p>
+      {/* Add more content as needed */}
+    </>
+  )
+
+  const rightContent = (
+    <>
+      {/* Add your right column content */}
+      Right column content...
+    </>
+  )
+
   return (
-    <section id="about" className="min-h-screen flex items-center justify-center">
-      <div className="container mx-auto px-6">
-        <h2 className="text-4xl font-bold mb-8">About</h2>
-        {/* Add your about content here */}
-      </div>
-    </section>
+    <SectionLayout
+      id="about"
+      title="About"
+      leftContent={leftContent}
+      rightContent={rightContent}
+    />
   )
 } 
