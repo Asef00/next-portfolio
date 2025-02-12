@@ -10,7 +10,7 @@ export default function UiUx() {
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
         veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip e
       </p>
-      <SeeMoreLink href="/" />
+      <SeeMoreLink />
     </>
   )
 
