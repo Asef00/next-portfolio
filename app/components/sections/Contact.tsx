@@ -13,7 +13,11 @@ export default function Contact() {
         className="absolute top-0"
         priority
       />
-      <h2 className="text-section-heading text-black">Contact me</h2>
+      <h2 className="text-section-heading text-black flex items-center gap-8">
+        Contact
+        <span className="w-[180px] h-0.5 bg-black inline-block" />
+        me
+      </h2>
       <p className="text-black">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua.
