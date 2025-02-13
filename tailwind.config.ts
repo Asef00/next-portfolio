@@ -14,6 +14,7 @@ export default {
       },
       fontSize: {
         'section-heading': '80px',
+        'portfolio-heading': '42px',
       },
     },
   },

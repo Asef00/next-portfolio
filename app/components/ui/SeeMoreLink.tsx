@@ -11,7 +11,7 @@ export default function SeeMoreLink({
 }: SeeMoreLinkProps) {
   return (
     <Link
-      href={href || '/'}
+      href={href || '/portfolio'}
       className={`inline-block mt-8 text-orange-500 hover:text-orange-600 transition-colors ${className}`}
     >
       See more
