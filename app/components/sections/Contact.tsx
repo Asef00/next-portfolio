@@ -27,7 +27,7 @@ export default function Contact() {
 
   const rightContent = (
     <>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 border-l border-black pl-[38px] ml-[120px]">
         {/* email */}
         <div>
           <h3 className="font-medium">Email</h3>
