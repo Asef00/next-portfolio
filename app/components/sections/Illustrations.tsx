@@ -1,7 +1,7 @@
 'use client'
 
-import SectionLayout from '../layouts/SectionLayout'
-import SeeMoreLink from '../ui/SeeMoreLink'
+import SectionLayout from '@/app/components/layouts/SectionLayout'
+import SeeMoreLink from '@/app/components/ui/SeeMoreLink'
 
 export default function Illustrations() {
   const leftContent = (

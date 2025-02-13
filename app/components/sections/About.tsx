@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import SectionLayout from '../layouts/SectionLayout'
+import SectionLayout from '@/app/components/layouts/SectionLayout'
 
 export default function About() {
   const leftContent = (
