@@ -6,7 +6,7 @@ export default function Contact() {
   const leftContent = (
     <>
       <Image
-        src="/about.jpg"
+        src="/contact.jpg"
         alt="contact art"
         width={627}
         height={293}
