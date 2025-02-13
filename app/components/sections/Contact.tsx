@@ -9,8 +9,8 @@ export default function Contact() {
         src="/about.jpg"
         alt="contact art"
         width={627}
-        height={589}
-        className="absolute -top-1/2"
+        height={293}
+        className="absolute top-0"
         priority
       />
       <h2 className="text-section-heading text-black">Contact me</h2>
