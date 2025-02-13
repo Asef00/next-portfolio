@@ -55,17 +55,17 @@ export default function Contact() {
           <h3 className="font-medium mb-2">Social</h3>
           <div className="flex gap-3">
             <SocialLink
-              href="https://github.com/yourusername"
+              href="https://www.instagram.com/bohemianent?igsh=MXR0NjVxbHRjaGFuNg%3D%3D&utm_source=qr"
               iconName="insta"
               label="Visit my GitHub profile"
             />
             <SocialLink
-              href="https://linkedin.com/in/yourusername"
+              href="https://www.linkedin.com/in/reza-hashemimoghadam/"
               iconName="linkedin"
               label="Visit my LinkedIn profile"
             />
             <SocialLink
-              href="https://twitter.com/yourusername"
+              href="https://www.behance.net/rezamoqadam"
               iconName="be"
               label="Visit my Twitter profile"
             />
