@@ -70,7 +70,7 @@ export default function Navigation() {
           isContactActive
             ? 'bg-white text-black'
             : 'bg-gray-600 md:bg-black text-black md:text-white'
-        } border-r border-gray-600 text-2xl md:text-base p-6 
+        } text-2xl md:text-base p-6 
         transform ${
           isMenuOpen ? 'translate-x-0' : '-translate-x-full'
         } md:translate-x-0 transition-transform
