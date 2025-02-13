@@ -56,7 +56,7 @@ export default function Contact() {
           <div className="flex gap-3">
             <SocialLink
               href="https://github.com/yourusername"
-              iconName="github"
+              iconName="insta"
               label="Visit my GitHub profile"
             />
             <SocialLink
@@ -66,7 +66,7 @@ export default function Contact() {
             />
             <SocialLink
               href="https://twitter.com/yourusername"
-              iconName="twitter"
+              iconName="be"
               label="Visit my Twitter profile"
             />
           </div>
