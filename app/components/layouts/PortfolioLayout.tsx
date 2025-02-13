@@ -10,18 +10,16 @@ export default function PortfolioLayout({
   children,
 }: PortfolioLayoutProps) {
   return (
-    <div className="min-h-screen bg-black text-white p-6">
+    <div className="flex">
       {/* Back Link - now vertically centered */}
-      <div className="h-16 flex items-center">
-        <Link
-          href="/"
-          className="inline-flex items-center text-orange-500 hover:text-orange-600 transition-colors"
-        >
-          ← Back
-        </Link>
-      </div>
+      <Link
+        href="/"
+        className="fixed top-1/2 font-bold hover:text-orange-500 hover:border-orange-500 transition-colors pb-[5px] border-b w-[100px] -ml-6 text-right"
+      >
+        Back
+      </Link>
 
-      <div className="container mx-auto">
+      <div className="container mx-auto py-[93px]">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Heading Column - now with orange text */}
           <div className="md:col-span-1">
