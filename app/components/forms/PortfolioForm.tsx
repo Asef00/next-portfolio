@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { PortfolioItem } from '@/app/types/portfolio'
+import ImageUpload from '@/app/components/ui/ImageUpload'
 
 interface PortfolioFormProps {
   initialData?: Partial<PortfolioItem>
@@ -13,12 +14,14 @@ export default function PortfolioForm({
   onSubmit,
 }: PortfolioFormProps) {
   const [loading, setLoading] = useState(false)
+  const [imageUrl, setImageUrl] = useState(initialData?.image || '')
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setLoading(true)
 
     const formData = new FormData(e.currentTarget)
+    formData.set('image', imageUrl)
     await onSubmit(formData)
 
     setLoading(false)
@@ -83,19 +86,23 @@ export default function PortfolioForm({
         </div>
 
         <div>
-          <label
-            htmlFor="image"
-            className="block text-sm font-medium text-gray-200"
-          >
+          <label className="block text-sm font-medium text-gray-200">
             Image
           </label>
-          <input
-            type="file"
-            id="image"
-            name="image"
-            accept="image/*"
-            className="mt-1 block w-full text-white"
-          />
+          {imageUrl ? (
+            <div className="mt-2 relative aspect-[4/3] w-full overflow-hidden rounded-lg">
+              <img src={imageUrl} alt="Upload" className="object-cover" />
+              <button
+                type="button"
+                onClick={() => setImageUrl('')}
+                className="absolute top-2 right-2 bg-black/50 text-white p-2 rounded-full"
+              >
+                Change
+              </button>
+            </div>
+          ) : (
+            <ImageUpload onUploadComplete={setImageUrl} />
+          )}
         </div>
 
         <div>
