@@ -1,21 +1,18 @@
 import { PortfolioItem } from '@/app/types/portfolio'
-import { db } from '@/app/lib/db' // You'll need to set up your database connection
+import { db } from '@/app/lib/db'
 
 export async function getPortfolioItems(): Promise<PortfolioItem[]> {
-  // Replace this with your actual database query
   const items = await db.portfolioItem.findMany({
     orderBy: {
       createdAt: 'desc',
     },
   })
-
   return items
 }
 
 export async function getPortfolioItem(
   slug: string
 ): Promise<PortfolioItem | null> {
-  // Replace this with your actual database query
   const item = await db.portfolioItem.findUnique({
     where: {
       slug,
