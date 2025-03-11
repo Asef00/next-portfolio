@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import ImageUpload from '@/app/components/ui/ImageUpload'
 import RichTextEditor from '@/app/components/ui/RichTextEditor'
 import { PortfolioItem } from '@/app/types/portfolio'
@@ -26,8 +27,13 @@ export default function PortfolioForm({
     formData.set('image', imageUrl)
     formData.set('content', content)
 
-    await onSubmit(formData)
-    setLoading(false)
+    try {
+      await onSubmit(formData)
+    } catch (error) {
+      console.error('Error submitting form:', error)
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -89,15 +95,34 @@ export default function PortfolioForm({
             Image
           </label>
           {imageUrl ? (
-            <div className="mt-2 relative aspect-[4/3] w-full overflow-hidden rounded-lg">
-              <img src={imageUrl} alt="Upload" className="object-cover" />
-              <button
-                type="button"
-                onClick={() => setImageUrl('')}
-                className="absolute top-2 right-2 bg-black/50 text-white p-2 rounded-full"
-              >
-                Change
-              </button>
+            <div className="space-y-2">
+              <div className="relative aspect-video w-full overflow-hidden rounded-lg border border-gray-700">
+                <Image
+                  src={imageUrl}
+                  alt="Portfolio item"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover"
+                  priority
+                />
+              </div>
+              <div className="flex items-center space-x-2">
+                <button
+                  type="button"
+                  onClick={() => setImageUrl('')}
+                  className="text-red-500 text-sm"
+                >
+                  Remove
+                </button>
+                <span className="text-gray-400">|</span>
+                <button
+                  type="button"
+                  onClick={() => setImageUrl('')}
+                  className="text-blue-500 text-sm"
+                >
+                  Change
+                </button>
+              </div>
             </div>
           ) : (
             <ImageUpload onUploadComplete={setImageUrl} />
