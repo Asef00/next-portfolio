@@ -1,12 +1,29 @@
+import ProUpgradeButton from '@/app/components/ui/ProUpgradeButton'
+
 export default function AdminSettings() {
   return (
     <div className="space-y-6">
       <h1 className="text-2xl text-white">Settings</h1>
 
-      <div className="bg-gray-900 rounded-lg p-6">
-        <h2 className="text-xl text-white mb-6">General Settings</h2>
+      <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-lg p-6 text-white mb-6">
+        <h2 className="text-xl font-bold mb-2">Upgrade to Pro</h2>
+        <p className="mb-4">
+          Advanced settings and customization options are available exclusively
+          to Pro users. Upgrade now to personalize your portfolio and access
+          additional features.
+        </p>
+        <ProUpgradeButton />
+      </div>
 
-        <form className="space-y-6">
+      <div className="bg-gray-900 rounded-lg p-6">
+        <h2 className="text-xl text-white mb-6 flex items-center">
+          General Settings
+          <span className="ml-2 bg-orange-500 text-xs px-1.5 py-0.5 rounded-full text-white">
+            PRO
+          </span>
+        </h2>
+
+        <form className="space-y-6 opacity-50 pointer-events-none">
           <div>
             <label
               htmlFor="site-title"
@@ -99,9 +116,14 @@ export default function AdminSettings() {
       </div>
 
       <div className="bg-gray-900 rounded-lg p-6">
-        <h2 className="text-xl text-white mb-6">Account Settings</h2>
+        <h2 className="text-xl text-white mb-6 flex items-center">
+          Account Settings
+          <span className="ml-2 bg-orange-500 text-xs px-1.5 py-0.5 rounded-full text-white">
+            PRO
+          </span>
+        </h2>
 
-        <form className="space-y-6">
+        <form className="space-y-6 opacity-50 pointer-events-none">
           <div>
             <label
               htmlFor="current-password"
@@ -156,6 +178,12 @@ export default function AdminSettings() {
             </button>
           </div>
         </form>
+      </div>
+
+      <div className="bg-gray-800 rounded-lg p-4 text-center">
+        <p className="text-gray-400">
+          Upgrade to Pro to access all settings and customization options
+        </p>
       </div>
     </div>
   )

@@ -1,3 +1,5 @@
+import ProUpgradeButton from '@/app/components/ui/ProUpgradeButton'
+
 export default function AdminDashboard() {
   return (
     <div className="space-y-6">
@@ -30,17 +32,30 @@ export default function AdminDashboard() {
           </a>
         </div>
 
-        <div className="bg-gray-900 rounded-lg p-6 shadow-md">
+        <div className="bg-gray-900 rounded-lg p-6 shadow-md relative overflow-hidden">
+          <div className="absolute top-0 right-0 bg-orange-500 text-white text-xs px-2 py-1">
+            PRO
+          </div>
           <h2 className="text-xl text-white mb-4">Messages</h2>
           <p className="text-gray-300 mb-4">
             View and respond to contact form submissions.
           </p>
-          <a
-            href="/admin/messages"
-            className="text-orange-500 hover:text-orange-600 font-medium"
-          >
-            Check Messages →
-          </a>
+          <span className="text-gray-500 cursor-not-allowed">
+            Upgrade to Pro →
+          </span>
+        </div>
+      </div>
+
+      <div className="bg-gradient-to-r from-gray-800 to-gray-900 rounded-lg p-6 mt-6">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
+          <div>
+            <h2 className="text-xl text-white mb-2">Upgrade to Pro</h2>
+            <p className="text-gray-300">
+              Get access to advanced features like Messages, Settings,
+              Analytics, and more.
+            </p>
+          </div>
+          <ProUpgradeButton />
         </div>
       </div>
     </div>
