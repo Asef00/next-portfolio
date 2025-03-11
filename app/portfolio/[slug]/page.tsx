@@ -1,4 +1,4 @@
-import { getPortfolioItem } from '@/app/lib/portfolio'
+import { getPortfolioItemBySlug } from '@/app/lib/portfolio'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import PortfolioLayout from '@/app/components/layouts/PortfolioLayout'
@@ -8,7 +8,7 @@ export default async function PortfolioItemPage({
 }: {
   params: { slug: string }
 }) {
-  const item = await getPortfolioItem(params.slug)
+  const item = await getPortfolioItemBySlug(params.slug)
 
   if (!item) {
     notFound()

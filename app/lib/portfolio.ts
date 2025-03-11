@@ -18,6 +18,14 @@ export async function getPortfolioItem(
   })
 }
 
+export async function getPortfolioItemBySlug(
+  slug: string
+): Promise<PortfolioItem | null> {
+  return await db.portfolioItem.findUnique({
+    where: { slug },
+  })
+}
+
 export async function createPortfolioItem(data: PortfolioFormData) {
   return await db.portfolioItem.create({
     data,
