@@ -1,5 +1,5 @@
 import ProUpgradeButton from '@/app/components/ui/ProUpgradeButton'
-
+import Link from 'next/link'
 export default function AdminDashboard() {
   return (
     <div className="space-y-6">
@@ -11,12 +11,12 @@ export default function AdminDashboard() {
           <p className="text-gray-300 mb-4">
             Manage your portfolio projects and case studies.
           </p>
-          <a
+          <Link
             href="/admin/portfolio"
             className="text-orange-500 hover:text-orange-600 font-medium"
           >
             View Portfolio →
-          </a>
+          </Link>
         </div>
 
         <div className="bg-gray-900 rounded-lg p-6 shadow-md">
@@ -24,12 +24,12 @@ export default function AdminDashboard() {
           <p className="text-gray-300 mb-4">
             Edit the main sections of your website.
           </p>
-          <a
+          <Link
             href="/admin/sections"
             className="text-orange-500 hover:text-orange-600 font-medium"
           >
             Manage Sections →
-          </a>
+          </Link>
         </div>
 
         <div className="bg-gray-900 rounded-lg p-6 shadow-md relative overflow-hidden">

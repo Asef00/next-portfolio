@@ -9,6 +9,7 @@ export async function DELETE(
     await deleteSection(params.id)
     return NextResponse.json({ success: true })
   } catch (error) {
+    console.error('Error deleting section:', error)
     return NextResponse.json(
       { error: 'Failed to delete section' },
       { status: 500 }
