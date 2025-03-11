@@ -1,18 +1,16 @@
+import AdminNavbar from '@/app/components/admin/AdminNavbar'
+
 export default function AdminLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
-    <div className="min-h-screen bg-black">
-      <div className="container mx-auto px-4 py-8">
-        <header className="mb-8">
-          <h1 className="text-portfolio-heading text-orange-500">
-            Admin Dashboard
-          </h1>
-        </header>
+    <div className="min-h-screen bg-gray-950">
+      <AdminNavbar />
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         {children}
-      </div>
+      </main>
     </div>
   )
 }
