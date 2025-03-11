@@ -1,20 +1,22 @@
 'use client'
 
 import { useState } from 'react'
-import { PortfolioItem } from '@/app/types/portfolio'
 import ImageUpload from '@/app/components/ui/ImageUpload'
+import RichTextEditor from '@/app/components/ui/RichTextEditor'
+import { PortfolioItem } from '@/app/types/portfolio'
 
 interface PortfolioFormProps {
-  initialData?: Partial<PortfolioItem>
-  onSubmit: (data: FormData) => Promise<void>
+  initialData?: PortfolioItem
+  onSubmit: (formData: FormData) => Promise<void>
 }
 
 export default function PortfolioForm({
   initialData,
   onSubmit,
 }: PortfolioFormProps) {
-  const [loading, setLoading] = useState(false)
   const [imageUrl, setImageUrl] = useState(initialData?.image || '')
+  const [content, setContent] = useState(initialData?.content || '')
+  const [loading, setLoading] = useState(false)
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -22,8 +24,9 @@ export default function PortfolioForm({
 
     const formData = new FormData(e.currentTarget)
     formData.set('image', imageUrl)
-    await onSubmit(formData)
+    formData.set('content', content)
 
+    await onSubmit(formData)
     setLoading(false)
   }
 
@@ -49,27 +52,6 @@ export default function PortfolioForm({
 
         <div>
           <label
-            htmlFor="category"
-            className="block text-sm font-medium text-gray-200"
-          >
-            Category
-          </label>
-          <select
-            id="category"
-            name="category"
-            defaultValue={initialData?.category}
-            required
-            className="mt-1 block w-full rounded-md border border-gray-700 bg-gray-900 text-white px-4 py-2"
-          >
-            <option value="uiux">UI/UX Design</option>
-            <option value="graphic">Graphic Design</option>
-            <option value="illustration">Illustration</option>
-            <option value="painting">Painting</option>
-          </select>
-        </div>
-
-        <div>
-          <label
             htmlFor="year"
             className="block text-sm font-medium text-gray-200"
           >
@@ -80,6 +62,23 @@ export default function PortfolioForm({
             id="year"
             name="year"
             defaultValue={initialData?.year}
+            required
+            className="mt-1 block w-full rounded-md border border-gray-700 bg-gray-900 text-white px-4 py-2"
+          />
+        </div>
+
+        <div>
+          <label
+            htmlFor="category"
+            className="block text-sm font-medium text-gray-200"
+          >
+            Category
+          </label>
+          <input
+            type="text"
+            id="category"
+            name="category"
+            defaultValue={initialData?.category}
             required
             className="mt-1 block w-full rounded-md border border-gray-700 bg-gray-900 text-white px-4 py-2"
           />
@@ -110,7 +109,7 @@ export default function PortfolioForm({
             htmlFor="description"
             className="block text-sm font-medium text-gray-200"
           >
-            Description
+            Short Description
           </label>
           <textarea
             id="description"
@@ -123,19 +122,13 @@ export default function PortfolioForm({
         </div>
 
         <div>
-          <label
-            htmlFor="content"
-            className="block text-sm font-medium text-gray-200"
-          >
+          <label className="block text-sm font-medium text-gray-200 mb-2">
             Content
           </label>
-          <textarea
-            id="content"
-            name="content"
-            rows={6}
-            defaultValue={initialData?.content}
-            required
-            className="mt-1 block w-full rounded-md border border-gray-700 bg-gray-900 text-white px-4 py-2"
+          <RichTextEditor
+            value={content}
+            onChange={setContent}
+            placeholder="Write detailed content here..."
           />
         </div>
       </div>
@@ -146,7 +139,7 @@ export default function PortfolioForm({
           disabled={loading}
           className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg transition-colors disabled:opacity-50"
         >
-          {loading ? 'Saving...' : 'Save'}
+          {loading ? 'Saving...' : 'Save Portfolio Item'}
         </button>
       </div>
     </form>
