@@ -11,7 +11,12 @@ export default function AdminNavbar() {
   const [isLoggingOut, setIsLoggingOut] = useState(false)
 
   const isActive = (path: string) => {
-    return pathname === path || pathname.startsWith(`${path}/`)
+    if (path === '/admin') {
+      // For the dashboard, only match the exact path
+      return pathname === '/admin'
+    }
+    // For other items, match the path or its subpaths
+    return pathname.startsWith(`${path}/`) || pathname === path
   }
 
   const navItems = [
