@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Image from 'next/image'
 
 export default function Hero() {
   const [isVisible, setIsVisible] = useState(true)
@@ -38,10 +39,13 @@ export default function Hero() {
           <div className="w-full md:w-1/2 flex items-center justify-center">
             <div className="relative w-full aspect-square">
               {/* Replace src with your image */}
-              <img
+              <Image
                 src="/your-image.jpg"
                 alt="Hero image"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover rounded-lg"
+                priority
               />
             </div>
           </div>

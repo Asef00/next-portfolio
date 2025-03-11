@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import ImageUpload from '@/app/components/ui/ImageUpload'
 
 interface SectionFormProps {
@@ -77,7 +78,13 @@ export default function SectionForm({
           </label>
           {imageUrl ? (
             <div className="mt-2 relative aspect-[4/3] w-full overflow-hidden rounded-lg">
-              <img src={imageUrl} alt="Upload" className="object-cover" />
+              <Image
+                src={imageUrl}
+                alt="Upload"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
+              />
               <button
                 type="button"
                 onClick={() => setImageUrl('')}
