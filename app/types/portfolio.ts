@@ -1,12 +1,22 @@
 export interface PortfolioItem {
   id: string
   name: string
+  slug: string
   year: string
   image: string
-  slug: string
   description: string
-  content: string // Rich text content
-  category: 'uiux' | 'graphic' | 'illustration' | 'painting'
+  content: string
+  category: string
   createdAt: Date
   updatedAt: Date
+}
+
+export interface PortfolioFormData {
+  name: string
+  slug: string
+  year: string
+  image: string
+  description: string
+  content: string
+  category: string
 }

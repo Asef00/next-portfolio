@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { getPortfolioItems } from '@/app/lib/portfolio'
 import { formatDate } from '@/app/lib/utils'
+import DeletePortfolioButton from '@/app/components/ui/DeletePortfolioButton'
 
 export default async function AdminPortfolio() {
   const items = await getPortfolioItems()
@@ -35,13 +36,14 @@ export default async function AdminPortfolio() {
                 <td className="px-6 py-4">{item.category}</td>
                 <td className="px-6 py-4">{item.year}</td>
                 <td className="px-6 py-4">{formatDate(item.createdAt)}</td>
-                <td className="px-6 py-4 text-right">
+                <td className="px-6 py-4 text-right space-x-4">
                   <Link
                     href={`/admin/portfolio/${item.id}`}
                     className="text-orange-500 hover:text-orange-600 transition-colors"
                   >
                     Edit
                   </Link>
+                  <DeletePortfolioButton id={item.id} name={item.name} />
                 </td>
               </tr>
             ))}

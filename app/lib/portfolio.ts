@@ -1,4 +1,4 @@
-import { PortfolioItem } from '@/app/types/portfolio'
+import { PortfolioItem, PortfolioFormData } from '@/app/types/portfolio'
 import { db } from '@/app/lib/db'
 
 export async function getPortfolioItems(): Promise<PortfolioItem[]> {
@@ -11,20 +11,14 @@ export async function getPortfolioItems(): Promise<PortfolioItem[]> {
 }
 
 export async function getPortfolioItem(
-  slug: string
+  id: string
 ): Promise<PortfolioItem | null> {
-  const item = await db.portfolioItem.findUnique({
-    where: {
-      slug,
-    },
+  return await db.portfolioItem.findUnique({
+    where: { id },
   })
-
-  return item
 }
 
-export async function createPortfolioItem(
-  data: Omit<PortfolioItem, 'id' | 'createdAt' | 'updatedAt'>
-) {
+export async function createPortfolioItem(data: PortfolioFormData) {
   return await db.portfolioItem.create({
     data,
   })
@@ -32,7 +26,7 @@ export async function createPortfolioItem(
 
 export async function updatePortfolioItem(
   id: string,
-  data: Partial<PortfolioItem>
+  data: Partial<PortfolioFormData>
 ) {
   return await db.portfolioItem.update({
     where: { id },
