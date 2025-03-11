@@ -1,11 +1,24 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useActiveSection } from '../hooks/useActiveSection'
+import { NavigationSection } from '@/app/types/section'
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [sections, setSections] = useState<NavigationSection[]>([])
   const activeSection = useActiveSection()
+
+  useEffect(() => {
+    // Fetch sections on client side
+    async function fetchSections() {
+      const response = await fetch('/api/sections')
+      const data = await response.json()
+      setSections(data)
+    }
+
+    fetchSections()
+  }, [])
 
   const scrollToSection = (sectionId: string) => {
     setIsMenuOpen(false)
@@ -86,34 +99,15 @@ export default function Navigation() {
             </button>
 
             <div className="space-y-3">
-              <button
-                onClick={() => scrollToSection('uiux')}
-                className={`block w-full text-left ${isActive('uiux')}`}
-              >
-                UI/UX Design
-              </button>
-              <button
-                onClick={() => scrollToSection('graphic-design')}
-                className={`block w-full text-left ${isActive(
-                  'graphic-design'
-                )}`}
-              >
-                Graphic Designs
-              </button>
-              <button
-                onClick={() => scrollToSection('paintings')}
-                className={`block w-full text-left ${isActive('paintings')}`}
-              >
-                Paintings and Printmaking
-              </button>
-              <button
-                onClick={() => scrollToSection('illustrations')}
-                className={`block w-full text-left ${isActive(
-                  'illustrations'
-                )}`}
-              >
-                Illustrations
-              </button>
+              {sections.map((section) => (
+                <button
+                  key={section.slug}
+                  onClick={() => scrollToSection(section.slug)}
+                  className={`block w-full text-left ${isActive(section.slug)}`}
+                >
+                  {section.title}
+                </button>
+              ))}
             </div>
 
             <button

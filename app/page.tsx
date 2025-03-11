@@ -1,13 +1,14 @@
-import Hero from '@/app/components/sections/Hero'
-import About from '@/app/components/sections/About'
-import UiUx from '@/app/components/sections/UiUx'
-import GraphicDesign from '@/app/components/sections/GraphicDesign'
-import Paintings from '@/app/components/sections/Paintings'
-import Illustrations from '@/app/components/sections/Illustrations'
-import Contact from '@/app/components/sections/Contact'
+import { getSections } from '@/app/lib/sections'
 import Navigation from '@/app/components/Navigation'
+import SectionComponent from '@/app/components/sections/SectionComponent'
+import Hero from '@/app/components/sections/Hero'
+import Contact from '@/app/components/sections/Contact'
+import { Section } from './types/section'
+import About from './components/sections/About'
 
-export default function Home() {
+export default async function Home() {
+  const sections = await getSections()
+
   return (
     <>
       <div className="flex">
@@ -16,10 +17,15 @@ export default function Home() {
           <Hero />
           <div className="relative">
             <About />
-            <UiUx />
-            <GraphicDesign />
-            <Paintings />
-            <Illustrations />
+            {sections.map((section: Section) => (
+              <SectionComponent
+                key={section.id}
+                title={section.title}
+                description={section.description}
+                image={section.image}
+                slug={section.slug}
+              />
+            ))}
             <Contact />
           </div>
         </main>

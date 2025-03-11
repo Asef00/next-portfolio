@@ -37,3 +37,16 @@ model PortfolioItem {
 
   @@map("portfolio_items")
 }
+
+model Section {
+  id          String   @id @default(cuid())
+  title       String
+  description String   @db.Text
+  image       String?
+  slug        String   @unique
+  order       Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("sections")
+}
