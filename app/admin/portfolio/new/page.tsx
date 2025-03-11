@@ -1,20 +1,23 @@
 import PortfolioForm from '@/app/components/forms/PortfolioForm'
 import { createPortfolioItem } from '@/app/lib/portfolio'
+import { generateSlug } from '@/app/lib/utils'
 import { redirect } from 'next/navigation'
 
 export default function NewPortfolioItem() {
   async function handleSubmit(formData: FormData) {
     'use server'
 
-    // TODO: Handle image upload
+    const name = formData.get('name') as string
+    const slug = generateSlug(name)
+
     const data = {
-      name: formData.get('name') as string,
-      slug: formData.get('name') as string, // TODO: Generate proper slug
+      name,
+      slug,
       year: formData.get('year') as string,
       category: formData.get('category') as string,
       description: formData.get('description') as string,
       content: formData.get('content') as string,
-      image: '/placeholder.jpg', // TODO: Replace with uploaded image URL
+      image: formData.get('image') as string,
     }
 
     await createPortfolioItem(data)
