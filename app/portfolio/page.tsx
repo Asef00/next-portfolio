@@ -3,12 +3,19 @@ import Link from 'next/link'
 import PortfolioLayout from '@/app/components/layouts/PortfolioLayout'
 import { getPortfolioItems } from '@/app/lib/portfolio'
 
-export default async function Portfolio() {
-  const portfolioItems = await getPortfolioItems()
+interface PortfolioPageProps {
+  searchParams: { category?: string }
+}
+
+export default async function Portfolio({ searchParams }: PortfolioPageProps) {
+  const items = await getPortfolioItems()
+  const filteredItems = searchParams.category 
+    ? items.filter(item => item.section.slug === searchParams.category)
+    : items
 
   return (
     <PortfolioLayout title="UI/UX Design">
-      {portfolioItems.map((item) => (
+      {filteredItems.map((item) => (
         <Link
           key={item.id}
           href={`/portfolio/${item.slug}`}

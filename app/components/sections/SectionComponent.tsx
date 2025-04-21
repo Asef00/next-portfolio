@@ -20,7 +20,7 @@ export default function SectionComponent({
       <h2 className="text-section-heading">{title}</h2>
       <p className="text-lg mt-6">{description}</p>
       <div className="mt-8">
-        <SeeMoreLink href={`/portfolio?category=${slug}`} />
+        <SeeMoreLink href={`/portfolio?category=${slug}`} text={`View ${title} Projects`} />
       </div>
     </>
   )
