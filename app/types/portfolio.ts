@@ -1,3 +1,5 @@
+import { Section } from '@/app/types/section'
+
 export interface PortfolioItem {
   id: string
   name: string
@@ -7,6 +9,7 @@ export interface PortfolioItem {
   description: string
   content: string
   category: string
+  section: Section
   createdAt: Date
   updatedAt: Date
 }

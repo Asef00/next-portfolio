@@ -32,6 +32,7 @@ model PortfolioItem {
   description String
   content     String   @db.Text
   category    String
+  section     Section  @relation(fields: [category], references: [slug])
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
@@ -45,6 +46,7 @@ model Section {
   image       String?
   slug        String   @unique
   order       Int
+  portfolioItems PortfolioItem[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
