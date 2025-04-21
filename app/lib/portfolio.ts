@@ -6,6 +6,9 @@ export async function getPortfolioItems(): Promise<PortfolioItem[]> {
     orderBy: {
       createdAt: 'desc',
     },
+    include: {
+      section: true,
+    },
   })
   return items
 }
@@ -15,6 +18,9 @@ export async function getPortfolioItem(
 ): Promise<PortfolioItem | null> {
   return await db.portfolioItem.findUnique({
     where: { id },
+    include: {
+      section: true,
+    },
   })
 }
 
@@ -23,6 +29,9 @@ export async function getPortfolioItemBySlug(
 ): Promise<PortfolioItem | null> {
   return await db.portfolioItem.findUnique({
     where: { slug },
+    include: {
+      section: true,
+    },
   })
 }
 

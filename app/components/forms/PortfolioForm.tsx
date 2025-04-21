@@ -1,13 +1,14 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import ImageUpload from '@/app/components/ui/ImageUpload'
 import RichTextEditor from '@/app/components/ui/RichTextEditor'
 import { PortfolioItem } from '@/app/types/portfolio'
+import { Section } from '@/app/types/section'
 
 interface PortfolioFormProps {
-  initialData?: PortfolioItem
+  initialData?: PortfolioItem & { category: string }
   onSubmit: (formData: FormData) => Promise<void>
 }
 
@@ -18,6 +19,23 @@ export default function PortfolioForm({
   const [imageUrl, setImageUrl] = useState(initialData?.image || '')
   const [content, setContent] = useState(initialData?.content || '')
   const [loading, setLoading] = useState(false)
+  const [sections, setSections] = useState<Section[]>([])
+  const [selectedSection, setSelectedSection] = useState(initialData?.category || '')
+
+  useEffect(() => {
+    async function fetchSections() {
+      const response = await fetch('/api/sections')
+      const data = await response.json()
+      setSections(data)
+    }
+    fetchSections()
+  }, [])
+
+  useEffect(() => {
+    if (initialData?.category) {
+      setSelectedSection(initialData.category)
+    }
+  }, [initialData?.category])
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -78,16 +96,23 @@ export default function PortfolioForm({
             htmlFor="category"
             className="block text-sm font-medium text-gray-200"
           >
-            Category
+            Section
           </label>
-          <input
-            type="text"
+          <select
             id="category"
             name="category"
-            defaultValue={initialData?.category}
+            value={selectedSection}
+            onChange={(e) => setSelectedSection(e.target.value)}
             required
             className="mt-1 block w-full rounded-md border border-gray-700 bg-gray-900 text-white px-4 py-2"
-          />
+          >
+            <option value="">Select a section</option>
+            {sections.map((section) => (
+              <option key={section.slug} value={section.slug}>
+                {section.title}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div>

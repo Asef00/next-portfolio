@@ -35,10 +35,16 @@ export default async function EditPortfolio({
     redirect('/admin/portfolio')
   }
 
+  // Create a new object with the correct category value
+  const formData = {
+    ...item,
+    category: item.section.slug
+  }
+
   return (
     <div className="max-w-2xl mx-auto">
       <h2 className="text-2xl text-white mb-6">Edit Portfolio Item</h2>
-      <PortfolioForm initialData={item} onSubmit={handleSubmit} />
+      <PortfolioForm initialData={formData} onSubmit={handleSubmit} />
     </div>
   )
 }
