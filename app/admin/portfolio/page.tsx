@@ -23,7 +23,7 @@ export default async function AdminPortfolio() {
           <thead className="bg-gray-800">
             <tr>
               <th className="px-6 py-3 text-left">Name</th>
-              <th className="px-6 py-3 text-left">Category</th>
+              <th className="px-6 py-3 text-left">Section</th>
               <th className="px-6 py-3 text-left">Year</th>
               <th className="px-6 py-3 text-left">Created</th>
               <th className="px-6 py-3 text-right">Actions</th>
@@ -33,7 +33,7 @@ export default async function AdminPortfolio() {
             {items.map((item) => (
               <tr key={item.id} className="hover:bg-gray-800">
                 <td className="px-6 py-4">{item.name}</td>
-                <td className="px-6 py-4">{item.category}</td>
+                <td className="px-6 py-4">{item.section.title}</td>
                 <td className="px-6 py-4">{item.year}</td>
                 <td className="px-6 py-4">{formatDate(item.createdAt)}</td>
                 <td className="px-6 py-4 text-right space-x-4">
