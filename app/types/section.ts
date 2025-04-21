@@ -2,7 +2,7 @@ export interface Section {
   id: string
   title: string
   description: string
-  image?: string
+  image: string | null
   slug: string
   order: number
   createdAt: Date
