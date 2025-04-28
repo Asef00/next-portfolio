@@ -4,20 +4,18 @@ import { generateSlug } from '@/app/lib/utils'
 import { SectionFormData } from '@/app/types/section'
 import { redirect } from 'next/navigation'
 
-export default async function EditSection({
-  params,
-}: {
-  params: { id: string }
+type Params = Promise<{ id: string }>
+export default async function EditSection(props: {
+  params: Params
 }) {
-  const section = await getSection(params.id)
+  const { id } = await props.params
+  const section = await getSection(id)
 
   if (!section) {
     redirect('/admin/sections')
   }
 
   async function handleSubmit(formData: FormData) {
-    'use server'
-
     const title = formData.get('title') as string
     const slug = generateSlug(title)
 
@@ -39,7 +37,7 @@ export default async function EditSection({
     }
     // If image field doesn't exist at all, don't include it in the update
 
-    await updateSection(params.id, data)
+    await updateSection(id, data)
     redirect('/admin/sections')
   }
 

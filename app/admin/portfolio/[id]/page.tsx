@@ -4,12 +4,12 @@ import { generateSlug } from '@/app/lib/utils'
 import { PortfolioFormData } from '@/app/types/portfolio'
 import { redirect } from 'next/navigation'
 
-export default async function EditPortfolio({
-  params,
-}: {
-  params: { id: string }
+type Params = Promise<{ id: string }>
+export default async function EditPortfolio(props: {
+  params: Params
 }) {
-  const item = await getPortfolioItem(params.id)
+  const { id } = await props.params
+  const item = await getPortfolioItem(id)
 
   if (!item) {
     redirect('/admin/portfolio')
@@ -31,7 +31,7 @@ export default async function EditPortfolio({
       image: (formData.get('image') as string) || '',
     }
 
-    await updatePortfolioItem(params.id, data)
+    await updatePortfolioItem(id, data)
     redirect('/admin/portfolio')
   }
 

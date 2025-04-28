@@ -3,6 +3,16 @@ import CredentialsProvider from 'next-auth/providers/credentials'
 import { db } from '@/app/lib/db'
 import bcrypt from 'bcryptjs'
 
+import type { DefaultSession } from 'next-auth';
+
+declare module 'next-auth' {
+  interface Session {
+    user: DefaultSession['user'] & {
+      id: string;
+    };
+  }
+}
+
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
@@ -55,9 +65,9 @@ export const authOptions: NextAuthOptions = {
       }
       return token
     },
-    async session({ session, token }) {
+    async session({ session, token, user }) {
       if (token) {
-        session.user.id = token.id
+          session.user.id = token.id
       }
       return session
     },

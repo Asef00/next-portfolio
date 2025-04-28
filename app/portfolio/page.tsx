@@ -3,14 +3,12 @@ import Link from 'next/link'
 import PortfolioLayout from '@/app/components/layouts/PortfolioLayout'
 import { getPortfolioItems } from '@/app/lib/portfolio'
 
-interface PortfolioPageProps {
-  searchParams: { category?: string }
-}
-
-export default async function Portfolio({ searchParams }: PortfolioPageProps) {
+type SearchParams = Promise<{ category: string }>
+export default async function Portfolio(props: { searchParams: SearchParams }) {
   const items = await getPortfolioItems()
-  const filteredItems = searchParams.category 
-    ? items.filter(item => item.section.slug === searchParams.category)
+  const { category } = await props.searchParams
+  const filteredItems = category 
+    ? items.filter(item => item.section.slug === category)
     : items
 
   return (

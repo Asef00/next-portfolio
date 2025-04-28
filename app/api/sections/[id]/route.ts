@@ -1,12 +1,15 @@
 import { deleteSection } from '@/app/lib/sections'
 import { NextResponse } from 'next/server'
 
+type Params = Promise<{ id: string }>
+
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  segmentData: { params: Params }
 ) {
   try {
-    await deleteSection(params.id)
+    const { id } = await segmentData.params
+    await deleteSection(id)
     return NextResponse.json({ success: true })
   } catch (error) {
     console.error('Error deleting section:', error)

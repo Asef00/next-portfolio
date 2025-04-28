@@ -3,12 +3,13 @@ import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import PortfolioLayout from '@/app/components/layouts/PortfolioLayout'
 
-export default async function PortfolioItemPage({
-  params,
-}: {
-  params: { slug: string }
+type Params = Promise<{ slug: string }>
+
+export default async function PortfolioItemPage(props: {
+  params: Params
 }) {
-  const item = await getPortfolioItemBySlug(params.slug)
+  const { slug } = await props.params
+  const item = await getPortfolioItemBySlug(slug)
 
   if (!item) {
     notFound()
