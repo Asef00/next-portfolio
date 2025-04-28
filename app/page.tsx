@@ -4,6 +4,7 @@ import SectionComponent from '@/app/components/sections/SectionComponent'
 import Contact from '@/app/components/sections/Contact'
 import { Section } from './types/section'
 import About from './components/sections/About'
+import Hero from '@/app/components/sections/Hero'
 
 export default async function Home() {
   const sections = await getSections()
