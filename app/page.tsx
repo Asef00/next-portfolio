@@ -14,9 +14,7 @@ export default async function Home() {
       <div className="flex h-screen">
         <Navigation />
         <main className="w-full flex-1 md:ml-[280px] snap-y snap-mandatory overflow-y-scroll scroll-smooth">
-          <div className="snap-start min-h-screen">
-             <Hero/>
-          </div>
+          <Hero/>
           <div className="snap-start min-h-screen">
             <About />
           </div>
