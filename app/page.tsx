@@ -1,7 +1,6 @@
 import { getSections } from '@/app/lib/sections'
 import Navigation from '@/app/components/Navigation'
 import SectionComponent from '@/app/components/sections/SectionComponent'
-import Hero from '@/app/components/sections/Hero'
 import Contact from '@/app/components/sections/Contact'
 import { Section } from './types/section'
 import About from './components/sections/About'
@@ -13,21 +12,22 @@ export default async function Home() {
     <>
       <div className="flex h-screen">
         <Navigation />
-        <main className="w-full flex-1 md:ml-[280px] snap-y snap-mandatory overflow-y-scroll">
-          <div >
-            <Hero />
+        <main className="w-full flex-1 md:ml-[280px] snap-y snap-mandatory overflow-y-scroll ">
+          <div className="snap-start min-h-screen">
+             <Hero/>
           </div>
-          <div>
+          <div className="snap-start min-h-screen">
             <About />
           </div>
           {sections.map((section: Section) => (
-            <div key={section.id}>
+            <div key={section.id} className="snap-start min-h-screen">
               <SectionComponent title={section.title} description={section.description} image={section.image || undefined} slug={section.slug} />
             </div>
           ))}
-          <div>
+             <div className="snap-start min-h-screen">
             <Contact />
           </div>
+
         </main>
       </div>
     </>
