@@ -5,35 +5,29 @@ import Hero from '@/app/components/sections/Hero'
 import Contact from '@/app/components/sections/Contact'
 import { Section } from './types/section'
 import About from './components/sections/About'
-import ScrollAnimation from './components/ScrollAnimation'
 
 export default async function Home() {
   const sections = await getSections()
 
   return (
     <>
-      <div className="flex">
+      <div className="flex h-screen">
         <Navigation />
-        <main className="w-full flex-1 md:ml-[280px]">
-          <ScrollAnimation className="min-h-screen">
+        <main className="w-full flex-1 md:ml-[280px] snap-y snap-mandatory overflow-y-scroll">
+          <div >
             <Hero />
-          </ScrollAnimation>
-          <ScrollAnimation className="min-h-screen">
+          </div>
+          <div>
             <About />
-          </ScrollAnimation>
+          </div>
           {sections.map((section: Section) => (
-            <ScrollAnimation key={section.id} className="min-h-screen">
-              <SectionComponent
-                title={section.title}
-                description={section.description}
-                image={section.image || undefined}
-                slug={section.slug}
-              />
-            </ScrollAnimation>
+            <div key={section.id}>
+              <SectionComponent title={section.title} description={section.description} image={section.image || undefined} slug={section.slug} />
+            </div>
           ))}
-          <ScrollAnimation className="min-h-screen">
+          <div>
             <Contact />
-          </ScrollAnimation>
+          </div>
         </main>
       </div>
     </>

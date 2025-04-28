@@ -1,51 +1,28 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useRef, useEffect } from 'react'
+import { useScrollSnap } from 'react-scroll-snap'
 
-gsap.registerPlugin(ScrollTrigger)
-
-interface ScrollAnimationProps {
+interface ScrollSnapProps {
   children: React.ReactNode
   className?: string
 }
 
-export default function ScrollAnimation({ children, className = '' }: ScrollAnimationProps) {
-  const sectionRef = useRef<HTMLDivElement>(null)
+const ScrollAnimation = ({ children, className = '' }: ScrollSnapProps) => {
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const { snapToElement } = useScrollSnap({ ref: scrollRef, duration: 100, delay: 0 })
 
   useEffect(() => {
-    const section = sectionRef.current
-    if (!section) return
-
-    gsap.fromTo(
-      section,
-      {
-        opacity: 0,
-        y: 100,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 80%',
-          end: 'bottom 20%',
-          toggleActions: 'play none none reverse',
-        },
-      }
-    )
-
-    return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill())
+    if (scrollRef.current) {
+      snapToElement(scrollRef.current.children[0])
     }
-  }, [])
+  }, [snapToElement])
 
   return (
-    <div ref={sectionRef} className={className}>
+    <div ref={scrollRef} className={`snap-y snap-mandatory overflow-y-scroll h-screen ${className}`}>
       {children}
     </div>
   )
-} 
+}
+
+export default ScrollAnimation
