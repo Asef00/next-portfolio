@@ -32,3 +32,8 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 ## Deployed on Vercel
 
 https://next-portfolio-rose-seven.vercel.app/
+
+## Create admin user
+```bash
+$env:ADMIN_EMAIL='admin@example.com'; $env:ADMIN_PASSWORD='admin123'; pnpm run create-admin
+```
