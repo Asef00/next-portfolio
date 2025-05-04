@@ -1,82 +1,57 @@
 'use client'
 
-import { useCallback, useState } from 'react'
-import { UploadButton } from '@uploadthing/react'
-import { OurFileRouter } from '@/app/api/uploadthing/core'
+import { useState } from 'react'
 import Image from 'next/image'
 
 interface ImageUploadProps {
-  onUploadComplete: (url: string) => void
+  onFileSelect?: (file: File | null) => void
   className?: string
 }
 
-export default function ImageUpload({
-  onUploadComplete,
-  className = '',
-}: ImageUploadProps) {
-  const [isUploading, setIsUploading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+export default function ImageUpload({ onFileSelect, className = '' }: ImageUploadProps) {
   const [preview, setPreview] = useState<string | null>(null)
 
-  const handleClientUploadComplete = useCallback(
-    (res: { url: string }[]) => {
-      setIsUploading(false)
-      const url = res[0]?.url
-      if (url) {
-        setPreview(url)
-        onUploadComplete(url)
-      }
-    },
-    [onUploadComplete]
-  )
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = e.target.files?.[0] || null
+    
+    // Create preview URL
+    if (selectedFile) {
+      const previewUrl = URL.createObjectURL(selectedFile)
+      setPreview(previewUrl)
+    } else {
+      setPreview(null)
+    }
 
-  const handleUploadError = useCallback((error: Error) => {
-    setIsUploading(false)
-    setError(error.message || 'Upload failed')
-    console.error('Upload error:', error)
-  }, [])
+    // Call onFileSelect if provided
+    onFileSelect?.(selectedFile)
+  }
 
   return (
     <div className={`space-y-4 ${className}`}>
-      {preview ? (
-        <div className="relative aspect-video w-full overflow-hidden rounded-lg border border-gray-700">
+      <div className="relative aspect-video w-full overflow-hidden rounded-lg border border-gray-700">
+        {preview && (
           <Image
             src={preview}
-            alt="Uploaded image"
+            alt="Preview"
             fill
             className="object-cover"
+            onLoad={() => URL.revokeObjectURL(preview)}
           />
-        </div>
-      ) : null}
+        )}
+      </div>
 
       <div className="flex flex-col items-center justify-center">
-        <UploadButton<OurFileRouter, 'imageUploader'>
-          endpoint="imageUploader"
-          onClientUploadComplete={handleClientUploadComplete}
-          onUploadError={handleUploadError}
-          onUploadBegin={() => {
-            setIsUploading(true)
-            setError(null)
-          }}
-          appearance={{
-            button: {
-              background: isUploading ? '#4B5563' : '#F97316',
-              color: 'white',
-              padding: '8px 16px',
-              borderRadius: '0.375rem',
-            },
-            container: {
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              width: '100%',
-            },
-          }}
-          content={{
-            button: isUploading ? 'Uploading...' : 'Upload Image',
-          }}
-        />
-        {error && <p className="mt-2 text-sm text-red-500">{error}</p>}
+        <label className="cursor-pointer">
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleFileChange}
+            className="hidden"
+          />
+          <div className="px-4 py-2 rounded-md bg-orange-500 hover:bg-orange-600 text-white transition-colors">
+            Select Image
+          </div>
+        </label>
       </div>
     </div>
   )

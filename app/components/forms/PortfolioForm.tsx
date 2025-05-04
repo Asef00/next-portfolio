@@ -20,7 +20,9 @@ export default function PortfolioForm({
   const [content, setContent] = useState(initialData?.content || '')
   const [loading, setLoading] = useState(false)
   const [sections, setSections] = useState<Section[]>([])
-  const [selectedSection, setSelectedSection] = useState(initialData?.category || '')
+  const [selectedSection, setSelectedSection] = useState(
+    initialData?.category || ''
+  )
 
   useEffect(() => {
     async function fetchSections() {
@@ -37,12 +39,45 @@ export default function PortfolioForm({
     }
   }, [initialData?.category])
 
+  const handleFileSelect = async (file: File | null) => {
+    if (!file) {
+      setImageUrl('')
+      return
+    }
+
+    try {
+      setLoading(true)
+      const formData = new FormData()
+      formData.append('file', file)
+
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to upload image')
+      }
+
+      const data = await response.json()
+      if (data.success) {
+        setImageUrl(`/uploads/${file.name}`)
+      }
+    } catch (error) {
+      console.error('Error uploading image:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setLoading(true)
 
     const formData = new FormData(e.currentTarget)
-    formData.set('image', imageUrl)
+    if (imageUrl) {
+      formData.set('image', imageUrl)
+    }
     formData.set('content', content)
 
     try {
@@ -150,7 +185,7 @@ export default function PortfolioForm({
               </div>
             </div>
           ) : (
-            <ImageUpload onUploadComplete={setImageUrl} />
+            <ImageUpload onFileSelect={handleFileSelect} />
           )}
         </div>
 

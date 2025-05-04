@@ -5,9 +5,7 @@ import { PortfolioFormData } from '@/app/types/portfolio'
 import { redirect } from 'next/navigation'
 
 type Params = Promise<{ id: string }>
-export default async function EditPortfolio(props: {
-  params: Params
-}) {
+export default async function EditPortfolio(props: { params: Params }) {
   const { id } = await props.params
   const item = await getPortfolioItem(id)
 
@@ -20,15 +18,16 @@ export default async function EditPortfolio(props: {
 
     const name = formData.get('name') as string
     const slug = generateSlug(name)
+    const image = formData.get('image') as string
 
-    const data: Partial<PortfolioFormData> = {
+    const data: PortfolioFormData = {
       name,
       slug,
       year: formData.get('year') as string,
       category: formData.get('category') as string,
       description: formData.get('description') as string,
       content: formData.get('content') as string,
-      image: (formData.get('image') as string) || '',
+      image: image || item?.image || '', // Keep existing image if no new one uploaded
     }
 
     await updatePortfolioItem(id, data)
@@ -38,7 +37,7 @@ export default async function EditPortfolio(props: {
   // Create a new object with the correct category value
   const formData = {
     ...item,
-    category: item.section.slug
+    category: item.section.slug,
   }
 
   return (

@@ -94,7 +94,7 @@ export default function SectionForm({
               </button>
             </div>
           ) : (
-            <ImageUpload onUploadComplete={setImageUrl} />
+            <ImageUpload onFileSelect={handleFileSelect} />
           )}
         </div>
 

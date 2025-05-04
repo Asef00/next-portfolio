@@ -9,6 +9,7 @@ export default function NewPortfolioItem() {
 
     const name = formData.get('name') as string
     const slug = generateSlug(name)
+    const image = formData.get('image') as string
 
     const data = {
       name,
@@ -17,7 +18,7 @@ export default function NewPortfolioItem() {
       category: formData.get('category') as string,
       description: formData.get('description') as string,
       content: formData.get('content') as string,
-      image: formData.get('image') as string,
+      image: image || '', // Ensure we have a string value for image
     }
 
     await createPortfolioItem(data)
