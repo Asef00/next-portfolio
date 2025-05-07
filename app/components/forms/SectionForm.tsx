@@ -22,6 +22,37 @@ export default function SectionForm({
   const [imageUrl, setImageUrl] = useState(initialData?.image || '')
   const [loading, setLoading] = useState(false)
 
+  const handleFileSelect = async (file: File | null) => {
+    if (!file) {
+      setImageUrl('')
+      return
+    }
+
+    try {
+      setLoading(true)
+      const formData = new FormData()
+      formData.append('file', file)
+
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to upload image')
+      }
+
+      const data = await response.json()
+      if (data.success) {
+        setImageUrl(`/uploads/${file.name}`)
+      }
+    } catch (error) {
+      console.error('Error uploading image:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setLoading(true)
