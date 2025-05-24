@@ -21,11 +21,15 @@ export default function RichTextEditor({
 }: RichTextEditorProps) {
   const [isLinkMenuOpen, setIsLinkMenuOpen] = useState(false)
   const [linkUrl, setLinkUrl] = useState('')
+  const [isHtmlMode, setIsHtmlMode] = useState(false)
+  const [htmlContent, setHtmlContent] = useState(value)
 
   const editor = useEditor({
     extensions: [
       StarterKit,
-      Image,
+      Image.configure({
+        allowBase64: true,
+      }),
       Link.configure({
         openOnClick: false,
       }),
@@ -39,7 +43,9 @@ export default function RichTextEditor({
     ],
     content: value,
     onUpdate: ({ editor }) => {
-      onChange(editor.getHTML())
+      const html = editor.getHTML()
+      onChange(html)
+      setHtmlContent(html)
     },
   })
 
@@ -47,11 +53,39 @@ export default function RichTextEditor({
     return null
   }
 
-  const addImage = () => {
-    const url = window.prompt('Enter the image URL')
-    if (url) {
-      editor.chain().focus().setImage({ src: url }).run()
+  const addImage = async () => {
+    const input = document.createElement('input')
+    input.type = 'file'
+    input.accept = 'image/*'
+
+    input.onchange = async (e) => {
+      const file = (e.target as HTMLInputElement).files?.[0]
+      if (!file) return
+
+      try {
+        const formData = new FormData()
+        formData.append('file', file)
+
+        const response = await fetch('/api/upload', {
+          method: 'POST',
+          body: formData,
+        })
+
+        if (!response.ok) {
+          throw new Error('Failed to upload image')
+        }
+
+        const data = await response.json()
+        if (data.success) {
+          const imageUrl = `/uploads/${file.name}`
+          editor.chain().focus().setImage({ src: imageUrl }).run()
+        }
+      } catch (error) {
+        console.error('Error uploading image:', error)
+      }
     }
+
+    input.click()
   }
 
   const setLink = () => {
@@ -65,6 +99,22 @@ export default function RichTextEditor({
       setLinkUrl('')
       setIsLinkMenuOpen(false)
     }
+  }
+
+  const handleHtmlChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setHtmlContent(e.target.value)
+    onChange(e.target.value)
+  }
+
+  const toggleHtmlMode = () => {
+    if (isHtmlMode) {
+      // Switching from HTML to rich text
+      editor.commands.setContent(htmlContent)
+    } else {
+      // Switching from rich text to HTML
+      setHtmlContent(editor.getHTML())
+    }
+    setIsHtmlMode(!isHtmlMode)
   }
 
   return (
@@ -316,6 +366,27 @@ export default function RichTextEditor({
             <path d="M2.9918 21C2.44405 21 2 20.5551 2 20.0066V3.9934C2 3.44476 2.45531 3 2.9918 3H21.0082C21.556 3 22 3.44495 22 3.9934V20.0066C22 20.5552 21.5447 21 21.0082 21H2.9918ZM20 15V5H4V19L14 9L20 15ZM20 17.8284L14 11.8284L6.82843 19H20V17.8284ZM8 11C6.89543 11 6 10.1046 6 9C6 7.89543 6.89543 7 8 7C9.10457 7 10 7.89543 10 9C10 10.1046 9.10457 11 8 11Z" />
           </svg>
         </button>
+
+        {/* HTML Toggle Button */}
+        <div className="w-px h-6 bg-gray-700 mx-1 self-center"></div>
+        <button
+          type="button"
+          onClick={toggleHtmlMode}
+          className={`p-2 rounded ${
+            isHtmlMode ? 'bg-gray-700' : 'hover:bg-gray-700'
+          }`}
+          title="Toggle HTML Mode"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="16"
+            height="16"
+            fill="currentColor"
+          >
+            <path d="M3 3h18v18H3V3zm16.525 13.707c-.131-.821-.666-1.511-2.252-2.155-.552-.259-1.165-.438-1.349-.854-.068-.248-.078-.382-.034-.529.113-.484.687-.629 1.137-.495.293.09.563.315.732.676.775-.507.775-.507 1.316-.844-.203-.314-.304-.451-.439-.586-.473-.528-1.103-.798-2.126-.775l-.528.067c-.507.124-.991.395-1.283.754-.855.968-.608 2.655.427 3.354 1.023.765 2.521.933 2.712 1.653.18.878-.652 1.159-1.475 1.058-.607-.136-.945-.439-1.316-1.002l-1.372.788c.157.359.337.517.607.832 1.305 1.316 4.568 1.249 5.153-.754.021-.067.18-.528.056-1.237l.034.049zm-6.737-5.434h-1.686c0 1.453-.007 2.898-.007 4.354 0 .924.047 1.772-.104 2.033-.247.517-.886.451-1.175.359-.297-.146-.448-.349-.623-.641-.047-.078-.082-.146-.095-.146l-1.368.844c.229.473.563.879.994 1.137.641.383 1.502.507 2.404.305.588-.17 1.095-.519 1.358-1.059.384-.697.302-1.553.299-2.509.008-1.541 0-3.083 0-4.635l.003-.042z" />
+          </svg>
+        </button>
       </div>
 
       {/* Link URL Input Field */}
@@ -339,10 +410,19 @@ export default function RichTextEditor({
       )}
 
       {/* Editor Content Area */}
-      <EditorContent
-        editor={editor}
-        className="prose prose-invert max-w-none p-4 min-h-[200px] bg-gray-900 text-white"
-      />
+      {isHtmlMode ? (
+        <textarea
+          value={htmlContent}
+          onChange={handleHtmlChange}
+          className="w-full h-[200px] bg-gray-900 text-white p-4 font-mono text-sm resize-none focus:outline-none"
+          placeholder="Write HTML here..."
+        />
+      ) : (
+        <EditorContent
+          editor={editor}
+          className="prose prose-invert max-w-none p-4 min-h-[200px] bg-gray-900 text-white"
+        />
+      )}
     </div>
   )
 }
