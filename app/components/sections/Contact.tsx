@@ -76,13 +76,11 @@ export default function Contact() {
   )
 
   return (
-    <div className="bg-white">
-      <SectionLayout
-        id="contact"
-        leftContent={leftContent}
-        rightContent={rightContent}
-        className="text-black relative"
-      />
-    </div>
+    <SectionLayout
+      id="contact"
+      leftContent={leftContent}
+      rightContent={rightContent}
+      className="text-black bg-white relative"
+    />
   )
 }
