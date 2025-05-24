@@ -25,7 +25,9 @@ export default function RichTextEditor({
   const editor = useEditor({
     extensions: [
       StarterKit,
-      Image,
+      Image.configure({
+        allowBase64: true,
+      }),
       Link.configure({
         openOnClick: false,
       }),
@@ -47,11 +49,39 @@ export default function RichTextEditor({
     return null
   }
 
-  const addImage = () => {
-    const url = window.prompt('Enter the image URL')
-    if (url) {
-      editor.chain().focus().setImage({ src: url }).run()
+  const addImage = async () => {
+    const input = document.createElement('input')
+    input.type = 'file'
+    input.accept = 'image/*'
+
+    input.onchange = async (e) => {
+      const file = (e.target as HTMLInputElement).files?.[0]
+      if (!file) return
+
+      try {
+        const formData = new FormData()
+        formData.append('file', file)
+
+        const response = await fetch('/api/upload', {
+          method: 'POST',
+          body: formData,
+        })
+
+        if (!response.ok) {
+          throw new Error('Failed to upload image')
+        }
+
+        const data = await response.json()
+        if (data.success) {
+          const imageUrl = `/uploads/${file.name}`
+          editor.chain().focus().setImage({ src: imageUrl }).run()
+        }
+      } catch (error) {
+        console.error('Error uploading image:', error)
+      }
     }
+
+    input.click()
   }
 
   const setLink = () => {
