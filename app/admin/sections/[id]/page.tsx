@@ -5,9 +5,7 @@ import { SectionFormData } from '@/app/types/section'
 import { redirect } from 'next/navigation'
 
 type Params = Promise<{ id: string }>
-export default async function EditSection(props: {
-  params: Params
-}) {
+export default async function EditSection(props: { params: Params }) {
   const { id } = await props.params
   const section = await getSection(id)
 
@@ -16,6 +14,8 @@ export default async function EditSection(props: {
   }
 
   async function handleSubmit(formData: FormData) {
+    'use server'
+
     const title = formData.get('title') as string
     const slug = generateSlug(title)
 
