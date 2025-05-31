@@ -3,16 +3,19 @@ import SectionLayout from '../layouts/SectionLayout'
 import SocialLink from '../ui/SocialLink'
 
 export default function Contact() {
+  const rootContent = (
+    <Image
+      src="/contact.jpg"
+      alt="contact art"
+      width={627}
+      height={293}
+      className="absolute top-0 left-6"
+      priority
+    />
+  )
+
   const leftContent = (
     <>
-      <Image
-        src="/contact.jpg"
-        alt="contact art"
-        width={627}
-        height={293}
-        className="absolute top-0"
-        priority
-      />
       <h2 className="text-section-heading text-black flex items-center gap-8">
         Contact
         <span className="w-[180px] h-0.5 bg-black inline-block" />
@@ -80,6 +83,7 @@ export default function Contact() {
       id="contact"
       leftContent={leftContent}
       rightContent={rightContent}
+      rootContent={rootContent}
       className="text-black bg-white relative"
     />
   )
