@@ -47,7 +47,6 @@ model Section {
   image       String?
   slug        String   @unique
   order       Int
-  hidden      Boolean  @default(false)
   portfolioItems PortfolioItem[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt

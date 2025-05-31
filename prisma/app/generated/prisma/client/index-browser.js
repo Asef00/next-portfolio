@@ -148,7 +148,6 @@ exports.Prisma.SectionScalarFieldEnum = {
   image: 'image',
   slug: 'slug',
   order: 'order',
-  hidden: 'hidden',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

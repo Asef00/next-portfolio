@@ -3226,7 +3226,6 @@ export namespace Prisma {
     image: string | null
     slug: string | null
     order: number | null
-    hidden: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -3238,7 +3237,6 @@ export namespace Prisma {
     image: string | null
     slug: string | null
     order: number | null
-    hidden: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -3250,7 +3248,6 @@ export namespace Prisma {
     image: number
     slug: number
     order: number
-    hidden: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -3272,7 +3269,6 @@ export namespace Prisma {
     image?: true
     slug?: true
     order?: true
-    hidden?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -3284,7 +3280,6 @@ export namespace Prisma {
     image?: true
     slug?: true
     order?: true
-    hidden?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -3296,7 +3291,6 @@ export namespace Prisma {
     image?: true
     slug?: true
     order?: true
-    hidden?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -3395,7 +3389,6 @@ export namespace Prisma {
     image: string | null
     slug: string
     order: number
-    hidden: boolean
     createdAt: Date
     updatedAt: Date
     _count: SectionCountAggregateOutputType | null
@@ -3426,7 +3419,6 @@ export namespace Prisma {
     image?: boolean
     slug?: boolean
     order?: boolean
-    hidden?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     portfolioItems?: boolean | Section$portfolioItemsArgs<ExtArgs>
@@ -3440,7 +3432,6 @@ export namespace Prisma {
     image?: boolean
     slug?: boolean
     order?: boolean
-    hidden?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["section"]>
@@ -3452,7 +3443,6 @@ export namespace Prisma {
     image?: boolean
     slug?: boolean
     order?: boolean
-    hidden?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["section"]>
@@ -3464,12 +3454,11 @@ export namespace Prisma {
     image?: boolean
     slug?: boolean
     order?: boolean
-    hidden?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type SectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "image" | "slug" | "order" | "hidden" | "createdAt" | "updatedAt", ExtArgs["result"]["section"]>
+  export type SectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "image" | "slug" | "order" | "createdAt" | "updatedAt", ExtArgs["result"]["section"]>
   export type SectionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     portfolioItems?: boolean | Section$portfolioItemsArgs<ExtArgs>
     _count?: boolean | SectionCountOutputTypeDefaultArgs<ExtArgs>
@@ -3489,7 +3478,6 @@ export namespace Prisma {
       image: string | null
       slug: string
       order: number
-      hidden: boolean
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["section"]>
@@ -3922,7 +3910,6 @@ export namespace Prisma {
     readonly image: FieldRef<"Section", 'String'>
     readonly slug: FieldRef<"Section", 'String'>
     readonly order: FieldRef<"Section", 'Int'>
-    readonly hidden: FieldRef<"Section", 'Boolean'>
     readonly createdAt: FieldRef<"Section", 'DateTime'>
     readonly updatedAt: FieldRef<"Section", 'DateTime'>
   }
@@ -4403,7 +4390,6 @@ export namespace Prisma {
     image: 'image',
     slug: 'slug',
     order: 'order',
-    hidden: 'hidden',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -4479,13 +4465,6 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Boolean'
-   */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -4648,7 +4627,6 @@ export namespace Prisma {
     image?: StringNullableFilter<"Section"> | string | null
     slug?: StringFilter<"Section"> | string
     order?: IntFilter<"Section"> | number
-    hidden?: BoolFilter<"Section"> | boolean
     createdAt?: DateTimeFilter<"Section"> | Date | string
     updatedAt?: DateTimeFilter<"Section"> | Date | string
     portfolioItems?: PortfolioItemListRelationFilter
@@ -4661,7 +4639,6 @@ export namespace Prisma {
     image?: SortOrderInput | SortOrder
     slug?: SortOrder
     order?: SortOrder
-    hidden?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     portfolioItems?: PortfolioItemOrderByRelationAggregateInput
@@ -4677,7 +4654,6 @@ export namespace Prisma {
     description?: StringFilter<"Section"> | string
     image?: StringNullableFilter<"Section"> | string | null
     order?: IntFilter<"Section"> | number
-    hidden?: BoolFilter<"Section"> | boolean
     createdAt?: DateTimeFilter<"Section"> | Date | string
     updatedAt?: DateTimeFilter<"Section"> | Date | string
     portfolioItems?: PortfolioItemListRelationFilter
@@ -4690,7 +4666,6 @@ export namespace Prisma {
     image?: SortOrderInput | SortOrder
     slug?: SortOrder
     order?: SortOrder
-    hidden?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: SectionCountOrderByAggregateInput
@@ -4710,7 +4685,6 @@ export namespace Prisma {
     image?: StringNullableWithAggregatesFilter<"Section"> | string | null
     slug?: StringWithAggregatesFilter<"Section"> | string
     order?: IntWithAggregatesFilter<"Section"> | number
-    hidden?: BoolWithAggregatesFilter<"Section"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Section"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Section"> | Date | string
   }
@@ -4868,7 +4842,6 @@ export namespace Prisma {
     image?: string | null
     slug: string
     order: number
-    hidden?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     portfolioItems?: PortfolioItemCreateNestedManyWithoutSectionInput
@@ -4881,7 +4854,6 @@ export namespace Prisma {
     image?: string | null
     slug: string
     order: number
-    hidden?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     portfolioItems?: PortfolioItemUncheckedCreateNestedManyWithoutSectionInput
@@ -4894,7 +4866,6 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
-    hidden?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     portfolioItems?: PortfolioItemUpdateManyWithoutSectionNestedInput
@@ -4907,7 +4878,6 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
-    hidden?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     portfolioItems?: PortfolioItemUncheckedUpdateManyWithoutSectionNestedInput
@@ -4920,7 +4890,6 @@ export namespace Prisma {
     image?: string | null
     slug: string
     order: number
-    hidden?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -4932,7 +4901,6 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
-    hidden?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -4944,7 +4912,6 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
-    hidden?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5101,11 +5068,6 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
   export type PortfolioItemListRelationFilter = {
     every?: PortfolioItemWhereInput
     some?: PortfolioItemWhereInput
@@ -5128,7 +5090,6 @@ export namespace Prisma {
     image?: SortOrder
     slug?: SortOrder
     order?: SortOrder
-    hidden?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -5144,7 +5105,6 @@ export namespace Prisma {
     image?: SortOrder
     slug?: SortOrder
     order?: SortOrder
-    hidden?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -5156,7 +5116,6 @@ export namespace Prisma {
     image?: SortOrder
     slug?: SortOrder
     order?: SortOrder
-    hidden?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -5197,14 +5156,6 @@ export namespace Prisma {
     _sum?: NestedIntFilter<$PrismaModel>
     _min?: NestedIntFilter<$PrismaModel>
     _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -5253,10 +5204,6 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
-  }
-
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
   }
 
   export type PortfolioItemUpdateManyWithoutSectionNestedInput = {
@@ -5368,11 +5315,6 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -5428,14 +5370,6 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
   export type SectionCreateWithoutPortfolioItemsInput = {
     id?: string
     title: string
@@ -5443,7 +5377,6 @@ export namespace Prisma {
     image?: string | null
     slug: string
     order: number
-    hidden?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -5455,7 +5388,6 @@ export namespace Prisma {
     image?: string | null
     slug: string
     order: number
-    hidden?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -5483,7 +5415,6 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
-    hidden?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5495,7 +5426,6 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     slug?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
-    hidden?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
