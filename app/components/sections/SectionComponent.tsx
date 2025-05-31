@@ -20,15 +20,22 @@ export default function SectionComponent({
       <h2 className="text-section-heading">{title}</h2>
       <p className="text-lg mt-6">{description}</p>
       <div className="mt-8">
-        <SeeMoreLink href={`/portfolio?category=${slug}`} text={`View ${title} Projects`} />
+        <SeeMoreLink
+          href={`/portfolio?category=${slug}`}
+          text={`View ${title} Projects`}
+        />
       </div>
     </>
   )
 
   const rightContent = image ? (
-    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg">
-      <Image src={image} alt={title} fill className="object-cover" />
-    </div>
+    <Image
+      src={image}
+      alt={title}
+      width={1000}
+      height={1000}
+      className="max-w-full max-h-full"
+    />
   ) : null
 
   return (
