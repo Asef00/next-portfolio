@@ -5,7 +5,6 @@ export interface Section {
   image: string | null
   slug: string
   order: number
-  hidden: boolean
   createdAt: Date
   updatedAt: Date
 }
@@ -21,5 +20,4 @@ export interface SectionFormData {
   image?: string | null
   slug: string
   order: number
-  hidden?: boolean
 }

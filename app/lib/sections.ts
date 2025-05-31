@@ -21,11 +21,8 @@ async function ensureUncategorizedSection() {
   }
 }
 
-export async function getSections(
-  includeHidden: boolean = false
-): Promise<Section[]> {
+export async function getSections(): Promise<Section[]> {
   return await db.section.findMany({
-    where: includeHidden ? undefined : { hidden: false },
     orderBy: {
       order: 'asc',
     },
@@ -33,7 +30,7 @@ export async function getSections(
 }
 
 export async function getAllSections(): Promise<Section[]> {
-  return await getSections(true)
+  return await getSections()
 }
 
 export async function getSection(id: string): Promise<Section | null> {
