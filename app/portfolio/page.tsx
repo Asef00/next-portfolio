@@ -7,12 +7,12 @@ type SearchParams = Promise<{ category: string }>
 export default async function Portfolio(props: { searchParams: SearchParams }) {
   const items = await getPortfolioItems()
   const { category } = await props.searchParams
-  const filteredItems = category 
-    ? items.filter(item => item.section.slug === category)
+  const filteredItems = category
+    ? items.filter((item) => item.section.slug === category)
     : items
 
   return (
-    <PortfolioLayout title="UI/UX Design">
+    <PortfolioLayout title={filteredItems[0].section.title}>
       {filteredItems.map((item) => (
         <Link
           key={item.id}
