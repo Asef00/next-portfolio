@@ -6,7 +6,6 @@ const UNCATEGORIZED_SECTION = {
   slug: 'uncategorized',
   description: 'Default section for items without a specific category',
   order: 0,
-  hidden: true,
 }
 
 async function ensureUncategorizedSection() {
