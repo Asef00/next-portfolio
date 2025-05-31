@@ -79,7 +79,7 @@ export default function Navigation() {
 
       {/* Navigation */}
       <nav
-        className={`fixed w-full md:w-[280px] h-screen transition ${
+        className={`col-span-2 h-screen transition ${
           isContactActive
             ? 'bg-white text-black'
             : 'bg-gray-600 md:bg-black text-black md:text-white'

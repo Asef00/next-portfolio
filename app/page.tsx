@@ -11,9 +11,9 @@ export default async function Home() {
 
   return (
     <>
-      <div className="flex">
+      <div className="grid grid-cols-12">
         <Navigation />
-        <main className="flex-1 md:ml-[280px]">
+        <main className="col-span-10">
           <Hero />
           <div className="h-screen overflow-y-scroll snap-y snap-mandatory">
             <About />
