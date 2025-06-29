@@ -19,7 +19,7 @@ export default function SectionComponent({
   const leftContent = (
     <>
       <SectionTitle title={title} />
-      <p className="text-lg mt-6">{description}</p>
+      <p className="text-lg mt-6 pr-6 md:pr-0">{description}</p>
       <div className="mt-8">
         <SeeMoreLink
           href={`/portfolio?category=${slug}`}

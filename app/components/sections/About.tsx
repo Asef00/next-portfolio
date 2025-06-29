@@ -3,7 +3,7 @@ import SectionLayout from '@/app/components/layouts/SectionLayout'
 import SectionTitle from '@/app/components/sections/SectionTitle'
 
 export default function About() {
-  const leftContent = (
+  const rightContent = (
     <>
       <div className="relative w-full aspect-square">
         <Image
@@ -17,7 +17,7 @@ export default function About() {
     </>
   )
 
-  const rightContent = (
+  const leftContent = (
     <>
       <SectionTitle
         title={
