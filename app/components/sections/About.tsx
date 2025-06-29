@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import SectionLayout from '@/app/components/layouts/SectionLayout'
+import SectionTitle from '@/app/components/sections/SectionTitle'
 
 export default function About() {
   const leftContent = (
@@ -18,11 +19,15 @@ export default function About() {
 
   const rightContent = (
     <>
-      <h1 className="text-section-heading">
-        Reza
-        <br />
-        Moghadam
-      </h1>
+      <SectionTitle
+        title={
+          <>
+            Reza
+            <br />
+            Moghadam
+          </>
+        }
+      />
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
