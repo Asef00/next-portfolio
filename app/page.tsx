@@ -11,25 +11,23 @@ export default async function Home() {
 
   return (
     <>
-      <div className="grid grid-cols-12">
-        <Navigation />
-        <main className="col-span-10">
-          <Hero />
-          <div className="h-screen overflow-y-scroll snap-y snap-mandatory">
-            <About />
-            {sections.map((section: Section) => (
-              <SectionComponent
-                key={section.id}
-                title={section.title}
-                description={section.description}
-                image={section.image || undefined}
-                slug={section.slug}
-              />
-            ))}
-            <Contact />
-          </div>
-        </main>
-      </div>
+      <Navigation />
+      <main>
+        <Hero />
+        <div className="h-screen overflow-y-scroll snap-y snap-mandatory">
+          <About />
+          {sections.map((section: Section) => (
+            <SectionComponent
+              key={section.id}
+              title={section.title}
+              description={section.description}
+              image={section.image || undefined}
+              slug={section.slug}
+            />
+          ))}
+          <Contact />
+        </div>
+      </main>
     </>
   )
 }

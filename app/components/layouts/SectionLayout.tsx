@@ -19,7 +19,7 @@ export default function SectionLayout({
 }: SectionLayoutProps) {
   return (
     <div
-      className={`h-screen snap-start flex items-center justify-center overflow-hidden ${className}`}
+      className={`h-screen pl-mobile-nav-width md:pl-desktop-nav-width snap-start flex items-center justify-center overflow-hidden ${className}`}
     >
       {rootContent}
       <AnimatedSection id={id}>

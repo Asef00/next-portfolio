@@ -16,6 +16,10 @@ export default {
         'section-heading': '80px',
         'portfolio-heading': '42px',
       },
+      spacing: {
+        'mobile-nav-width': '72px',
+        'desktop-nav-width': '200px',
+      },
     },
   },
   plugins: [],

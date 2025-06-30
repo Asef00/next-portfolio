@@ -44,22 +44,7 @@ export default function Navigation() {
         }`}
         aria-label="Toggle menu"
       >
-        {!isMenuOpen ? (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-6 h-6"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-            />
-          </svg>
-        ) : (
+        {isMenuOpen ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -74,16 +59,28 @@ export default function Navigation() {
               d="M6 18L18 6M6 6l12 12"
             />
           </svg>
+        ) : (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-6 h-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+            />
+          </svg>
         )}
       </button>
 
       {/* Navigation */}
       <nav
-        className={`col-span-2 h-screen transition ${
-          isContactActive
-            ? 'bg-white text-black'
-            : 'bg-gray-600 md:bg-black text-black md:text-white'
-        } text-2xl md:text-base p-6 
+        className={`h-screen w-full md:w-desktop-nav-width text-2xl md:text-base p-6 fixed bg-gray-600 md:bg-transparent
+          ${isContactActive && 'text-black'}
         transform ${
           isMenuOpen ? 'translate-x-0' : '-translate-x-full'
         } md:translate-x-0 transition-transform
