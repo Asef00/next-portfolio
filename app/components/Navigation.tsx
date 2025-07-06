@@ -30,6 +30,7 @@ export default function Navigation({
     setIsMenuOpen(false)
     const element = document.getElementById(sectionId)
     element?.scrollIntoView({ behavior: 'smooth' })
+    window.history.pushState({}, '', `#${sectionId}`)
   }
 
   const isActive = (sectionId: string) => {
