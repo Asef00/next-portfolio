@@ -26,6 +26,18 @@ export default function Navigation({
     fetchSections()
   }, [])
 
+  useEffect(() => {
+    // Scroll to section if hash is present on initial load
+    if (window.location.hash) {
+      const sectionId = window.location.hash.substring(1)
+      // Wait for sections to be loaded/rendered
+      setTimeout(() => {
+        const element = document.getElementById(sectionId)
+        element?.scrollIntoView({ behavior: 'smooth' })
+      }, 100)
+    }
+  }, [sections])
+
   const scrollToSection = (sectionId: string) => {
     setIsMenuOpen(false)
     const element = document.getElementById(sectionId)
