@@ -5,15 +5,19 @@ import { Section } from './types/section'
 import Hero from '@/app/components/sections/Hero'
 import About from './components/sections/About'
 import Contact from './components/sections/Contact'
+import { cookies } from 'next/headers'
 
 export default async function Home() {
+  const cookieStore = await cookies()
+  const heroShown = cookieStore.get('heroShown')
+
   const sections = await getSections()
 
   return (
     <>
       <Navigation />
       <main>
-        <Hero />
+        {!heroShown && <Hero />}
         <div className="h-screen overflow-y-scroll snap-y snap-mandatory">
           <About />
           {sections.map((section: Section) => (

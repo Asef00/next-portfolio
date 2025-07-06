@@ -3,34 +3,27 @@
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 
+function setHeroCookie() {
+  const expires = new Date(Date.now() + 24 * 60 * 60 * 1000).toUTCString()
+  document.cookie = `heroShown=true; expires=${expires}; path=/`
+}
+
 export default function Hero() {
   const [isVisible, setIsVisible] = useState(true)
   const [hasExited, setHasExited] = useState(false)
 
   useEffect(() => {
-    // Check if hero has already been shown this session
-    if (typeof window !== 'undefined') {
-      const heroShown = sessionStorage.getItem('heroShown')
-      if (heroShown === 'true') {
-        setIsVisible(false)
-        return
-      }
-    }
-    // Show hero, then hide after 3s and set flag
+    // Show hero, then hide after 3s and set cookie
     const timer = setTimeout(() => {
       setIsVisible(false)
-      if (typeof window !== 'undefined') {
-        sessionStorage.setItem('heroShown', 'true')
-      }
+      setHeroCookie()
     }, 3000)
     return () => clearTimeout(timer)
   }, [])
 
   const handleClose = () => {
     setIsVisible(false)
-    if (typeof window !== 'undefined') {
-      sessionStorage.setItem('heroShown', 'true')
-    }
+    setHeroCookie()
   }
 
   const handleTransitionEnd = () => {
