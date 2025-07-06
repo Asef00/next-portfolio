@@ -21,7 +21,7 @@ export default function Contact() {
         <span className="w-[180px] h-0.5 bg-black inline-block" />
         me
       </h2>
-      <p className="text-black">
+      <p className="text-gray-500">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua.
       </p>
@@ -85,6 +85,7 @@ export default function Contact() {
       rightContent={rightContent}
       rootContent={rootContent}
       className="text-black bg-white relative"
+      reversOnMobile={false}
     />
   )
 }

@@ -8,6 +8,7 @@ interface SectionLayoutProps {
   rightContent?: React.ReactNode
   rootContent?: React.ReactNode
   className?: string
+  reversOnMobile?: boolean
 }
 
 export default function SectionLayout({
@@ -16,6 +17,7 @@ export default function SectionLayout({
   rightContent,
   rootContent,
   className = '',
+  reversOnMobile = true,
 }: SectionLayoutProps) {
   return (
     <div
@@ -24,7 +26,11 @@ export default function SectionLayout({
       {rootContent}
       <AnimatedSection id={id}>
         <div className="container mx-auto md:px-6">
-          <div className="flex flex-col-reverse md:flex-row md:space-x-12 space-y-8 md:space-y-0 gap-9 md:gap-0">
+          <div
+            className={`flex ${
+              reversOnMobile ? 'flex-col-reverse' : 'flex-col'
+            } md:flex-row md:space-x-12 space-y-8 md:space-y-0 gap-9 md:gap-0`}
+          >
             {/* Left Column */}
             <div className="w-full md:w-1/2 flex justify-center flex-col">
               {leftContent}
