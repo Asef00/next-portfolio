@@ -9,7 +9,7 @@ export default function Contact() {
       alt="contact art"
       width={627}
       height={293}
-      className="absolute top-0 left-6"
+      className="absolute top-0 left-[308px]"
       priority
     />
   )
