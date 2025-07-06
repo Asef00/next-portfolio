@@ -5,9 +5,7 @@ import PortfolioLayout from '@/app/components/layouts/PortfolioLayout'
 
 type Params = Promise<{ slug: string }>
 
-export default async function PortfolioItemPage(props: {
-  params: Params
-}) {
+export default async function PortfolioItemPage(props: { params: Params }) {
   const { slug } = await props.params
   const item = await getPortfolioItemBySlug(slug)
 
@@ -18,7 +16,7 @@ export default async function PortfolioItemPage(props: {
   return (
     <PortfolioLayout title={item.name}>
       <div className="col-span-2">
-        <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-gray-800">
+        <div className="relative aspect-video w-full overflow-hidden bg-gray-800">
           <Image
             src={item.image}
             alt={item.name}

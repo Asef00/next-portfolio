@@ -4,7 +4,13 @@ import { useState, useEffect } from 'react'
 import { useActiveSection } from '../hooks/useActiveSection'
 import { NavigationSection } from '@/app/types/section'
 
-export default function Navigation() {
+export default function Navigation({
+  mobileTitle,
+  hideOnDesktop = false,
+}: {
+  mobileTitle?: string
+  hideOnDesktop?: boolean
+}) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [sections, setSections] = useState<NavigationSection[]>([])
   const activeSection = useActiveSection()
@@ -77,9 +83,18 @@ export default function Navigation() {
         )}
       </button>
 
+      {/* Mobile Title */}
+      {mobileTitle && (
+        <h1 className="fixed top-16 left-5 text-2xl md:hidden text-orange-500 [writing-mode:sideways-lr]">
+          {mobileTitle}
+        </h1>
+      )}
+
       {/* Navigation */}
       <nav
-        className={`h-screen w-full md:w-desktop-nav-width text-2xl md:text-base p-6 fixed bg-gray-600 md:bg-transparent
+        className={`h-screen w-full md:w-desktop-nav-width text-2xl md:text-base p-6 fixed bg-gray-600 md:bg-transparent ${
+          hideOnDesktop ? 'md:hidden' : ''
+        }
           ${isContactActive && 'text-black'}
         transform ${
           isMenuOpen ? 'translate-x-0' : '-translate-x-full'
