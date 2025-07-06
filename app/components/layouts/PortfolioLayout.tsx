@@ -1,5 +1,7 @@
-import Link from 'next/link'
+'use client'
+
 import Navigation from '@/app/components/Navigation'
+import { useRouter } from 'next/navigation'
 
 interface PortfolioLayoutProps {
   title: string
@@ -10,17 +12,19 @@ export default function PortfolioLayout({
   title,
   children,
 }: PortfolioLayoutProps) {
+  const router = useRouter()
+
   return (
     <main>
       <Navigation mobileTitle={title} hideOnDesktop />
       <div className="flex pl-mobile-nav-width">
         {/* Back Link - now vertically centered */}
-        <Link
-          href="/"
+        <button
+          onClick={() => router.back()}
           className="fixed top-1/2 hidden md:inline font-bold hover:text-orange-500 hover:border-orange-500 transition-colors pb-[5px] border-b w-[100px] -ml-6 text-right"
         >
           Back
-        </Link>
+        </button>
         <div className="container mx-auto py-16 md:py-[93px]">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Heading Column - now with orange text */}
