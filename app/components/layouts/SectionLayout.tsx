@@ -25,7 +25,7 @@ export default function SectionLayout({
     >
       {rootContent}
       <AnimatedSection id={id}>
-        <div className="container mx-auto md:px-6">
+        <div className="container ml-auto">
           <div
             className={`flex ${
               reversOnMobile ? 'flex-col-reverse' : 'flex-col'

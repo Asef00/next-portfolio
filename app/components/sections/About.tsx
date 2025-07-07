@@ -3,21 +3,21 @@ import SectionLayout from '@/app/components/layouts/SectionLayout'
 import SectionTitle from '@/app/components/sections/SectionTitle'
 
 export default function About() {
-  const rightContent = (
+  const leftContent = (
     <>
       <div className="relative w-full aspect-square">
         <Image
           src="/about.jpg"
           alt="About me"
           fill
-          className="object-cover rounded-lg max-w-[518px] mx-auto"
+          className="object-cover max-w-[518px] mx-auto"
           priority
         />
       </div>
     </>
   )
 
-  const leftContent = (
+  const rightContent = (
     <>
       <SectionTitle
         title={
