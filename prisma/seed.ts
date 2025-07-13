@@ -8,25 +8,26 @@ async function main() {
     const sections = [
       {
         title: 'Web Development',
-        description: 'Modern web applications built with cutting-edge technologies',
+        description:
+          'Modern web applications built with cutting-edge technologies',
         slug: 'web-development',
         order: 1,
-        image: '/images/sections/web-dev.jpg'
+        image: '/images/sections/web-dev.jpg',
       },
       {
         title: 'Mobile Apps',
         description: 'Native and cross-platform mobile applications',
         slug: 'mobile-apps',
         order: 2,
-        image: '/images/sections/mobile.jpg'
+        image: '/images/sections/mobile.jpg',
       },
       {
         title: 'UI/UX Design',
         description: 'Beautiful and intuitive user interfaces',
         slug: 'ui-ux-design',
         order: 3,
-        image: '/images/sections/design.jpg'
-      }
+        image: '/images/sections/design.jpg',
+      },
     ]
 
     // Create portfolio items
@@ -36,9 +37,11 @@ async function main() {
         slug: 'ecommerce-platform',
         year: '2024',
         image: '/images/portfolio/ecommerce.jpg',
-        description: 'A full-featured e-commerce platform with real-time inventory management',
-        content: 'Built with Next.js, TypeScript, and PostgreSQL. Features include real-time inventory tracking, secure payment processing, and an intuitive admin dashboard.',
-        category: 'web-development'
+        description:
+          'A full-featured e-commerce platform with real-time inventory management',
+        content:
+          'Built with Next.js, TypeScript, and PostgreSQL. Features include real-time inventory tracking, secure payment processing, and an intuitive admin dashboard.',
+        category: 'web-development',
       },
       {
         name: 'Fitness Tracking App',
@@ -46,8 +49,9 @@ async function main() {
         year: '2023',
         image: '/images/portfolio/fitness.jpg',
         description: 'Mobile app for tracking workouts and nutrition',
-        content: 'Developed using React Native and Firebase. Includes features like workout planning, progress tracking, and nutrition logging.',
-        category: 'mobile-apps'
+        content:
+          'Developed using React Native and Firebase. Includes features like workout planning, progress tracking, and nutrition logging.',
+        category: 'mobile-apps',
       },
       {
         name: 'Dashboard Redesign',
@@ -55,9 +59,10 @@ async function main() {
         year: '2024',
         image: '/images/portfolio/dashboard.jpg',
         description: 'Modern dashboard interface for analytics platform',
-        content: 'Complete redesign of an analytics dashboard focusing on user experience and data visualization. Implemented using Figma and React.',
-        category: 'ui-ux-design'
-      }
+        content:
+          'Complete redesign of an analytics dashboard focusing on user experience and data visualization. Implemented using Figma and React.',
+        category: 'ui-ux-design',
+      },
     ]
 
     console.log('Seeding sections...')
@@ -87,4 +92,4 @@ async function main() {
   }
 }
 
-main() 
+main()
