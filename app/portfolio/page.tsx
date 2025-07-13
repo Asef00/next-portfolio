@@ -3,6 +3,9 @@ import Link from 'next/link'
 import PortfolioLayout from '@/app/components/layouts/PortfolioLayout'
 import { getPortfolioItems } from '@/app/lib/portfolio'
 
+// Force dynamic rendering to avoid database access during build
+export const dynamic = 'force-dynamic'
+
 type SearchParams = Promise<{ category: string }>
 export default async function Portfolio(props: { searchParams: SearchParams }) {
   const items = await getPortfolioItems()

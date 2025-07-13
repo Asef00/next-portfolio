@@ -1,6 +1,5 @@
 import { NextAuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import { db } from '@/app/lib/db'
 import bcrypt from 'bcryptjs'
 
 import type { DefaultSession } from 'next-auth'
@@ -25,6 +24,9 @@ export const authOptions: NextAuthOptions = {
         if (!credentials?.email || !credentials?.password) {
           return null
         }
+
+        // Lazy load the database connection
+        const { db } = await import('@/app/lib/db')
 
         const user = await db.user.findUnique({
           where: {

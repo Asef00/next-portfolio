@@ -3,6 +3,9 @@ import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import PortfolioLayout from '@/app/components/layouts/PortfolioLayout'
 
+// Force dynamic rendering to avoid database access during build
+export const dynamic = 'force-dynamic'
+
 type Params = Promise<{ slug: string }>
 
 export default async function PortfolioItemPage(props: { params: Params }) {
