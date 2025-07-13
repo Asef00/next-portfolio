@@ -7,6 +7,9 @@ import About from './components/sections/About'
 import Contact from './components/sections/Contact'
 import { cookies } from 'next/headers'
 
+// Force dynamic rendering to avoid database access during build
+export const dynamic = 'force-dynamic'
+
 export default async function Home() {
   const cookieStore = await cookies()
   const heroShown = cookieStore.get('heroShown')
