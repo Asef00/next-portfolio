@@ -3,16 +3,27 @@
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 
+function setHeroCookie() {
+  const expires = new Date(Date.now() + 24 * 60 * 60 * 1000).toUTCString()
+  document.cookie = `heroShown=true; expires=${expires}; path=/`
+}
+
 export default function Hero() {
   const [isVisible, setIsVisible] = useState(true)
 
   useEffect(() => {
+    // Show hero, then hide after 3s and set cookie
     const timer = setTimeout(() => {
       setIsVisible(false)
+      setHeroCookie()
     }, 3000)
-
     return () => clearTimeout(timer)
   }, [])
+
+  const handleClose = () => {
+    setIsVisible(false)
+    setHeroCookie()
+  }
 
   return (
     <section
@@ -28,7 +39,7 @@ export default function Hero() {
               Creative Designer & Developer
             </p>
             <button
-              onClick={() => setIsVisible(false)}
+              onClick={handleClose}
               className="text-lg hover:text-gray-600 transition-colors"
             >
               Enter Site →

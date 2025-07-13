@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import SectionLayout from '../layouts/SectionLayout'
 import SocialLink from '../ui/SocialLink'
+import SectionTitle from '@/app/components/sections/SectionTitle'
 
 export default function Contact() {
   const rootContent = (
@@ -9,19 +10,23 @@ export default function Contact() {
       alt="contact art"
       width={627}
       height={293}
-      className="absolute top-0 left-6"
+      className="absolute top-0 left-mobile-nav-width md:left-[308px]"
       priority
     />
   )
 
   const leftContent = (
     <>
-      <h2 className="text-section-heading text-black flex items-center gap-8">
-        Contact
-        <span className="w-[180px] h-0.5 bg-black inline-block" />
-        me
-      </h2>
-      <p className="text-black">
+      <SectionTitle
+        title={
+          <div className="flex items-center gap-8 text-black mb-6 md:mb-2.5">
+            Contact
+            <span className="w-[180px] h-0.5 bg-black inline-block" />
+            me
+          </div>
+        }
+      />
+      <p className="text-gray-500">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua.
       </p>
@@ -30,7 +35,7 @@ export default function Contact() {
 
   const rightContent = (
     <>
-      <div className="flex flex-col gap-4 border-l border-black pl-[38px] ml-[120px]">
+      <div className="flex flex-col gap-4 md:border-l border-black md:pl-[38px] md:ml-[120px]">
         {/* email */}
         <div>
           <h3 className="font-medium">Email</h3>
@@ -54,25 +59,22 @@ export default function Contact() {
           </a>
         </div>
         {/* social */}
-        <div>
-          <h3 className="font-medium mb-2">Social</h3>
-          <div className="flex gap-3">
-            <SocialLink
-              href="https://www.instagram.com/bohemianent?igsh=MXR0NjVxbHRjaGFuNg%3D%3D&utm_source=qr"
-              iconName="insta"
-              label="Visit my GitHub profile"
-            />
-            <SocialLink
-              href="https://www.linkedin.com/in/reza-hashemimoghadam/"
-              iconName="linkedin"
-              label="Visit my LinkedIn profile"
-            />
-            <SocialLink
-              href="https://www.behance.net/rezamoqadam"
-              iconName="be"
-              label="Visit my Twitter profile"
-            />
-          </div>
+        <div className="flex gap-3 mt-4 md:mt-6">
+          <SocialLink
+            href="https://www.instagram.com/bohemianent?igsh=MXR0NjVxbHRjaGFuNg%3D%3D&utm_source=qr"
+            iconName="insta"
+            label="Visit my GitHub profile"
+          />
+          <SocialLink
+            href="https://www.linkedin.com/in/reza-hashemimoghadam/"
+            iconName="linkedin"
+            label="Visit my LinkedIn profile"
+          />
+          <SocialLink
+            href="https://www.behance.net/rezamoqadam"
+            iconName="be"
+            label="Visit my Twitter profile"
+          />
         </div>
       </div>
     </>
@@ -85,6 +87,7 @@ export default function Contact() {
       rightContent={rightContent}
       rootContent={rootContent}
       className="text-black bg-white relative"
+      reversOnMobile={false}
     />
   )
 }

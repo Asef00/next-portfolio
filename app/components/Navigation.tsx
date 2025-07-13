@@ -4,7 +4,13 @@ import { useState, useEffect } from 'react'
 import { useActiveSection } from '../hooks/useActiveSection'
 import { NavigationSection } from '@/app/types/section'
 
-export default function Navigation() {
+export default function Navigation({
+  mobileTitle,
+  hideOnDesktop = false,
+}: {
+  mobileTitle?: string
+  hideOnDesktop?: boolean
+}) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [sections, setSections] = useState<NavigationSection[]>([])
   const activeSection = useActiveSection()
@@ -20,10 +26,23 @@ export default function Navigation() {
     fetchSections()
   }, [])
 
+  useEffect(() => {
+    // Scroll to section if hash is present on initial load
+    if (window.location.hash) {
+      const sectionId = window.location.hash.substring(1)
+      // Wait for sections to be loaded/rendered
+      setTimeout(() => {
+        const element = document.getElementById(sectionId)
+        element?.scrollIntoView({ behavior: 'smooth' })
+      }, 100)
+    }
+  }, [sections])
+
   const scrollToSection = (sectionId: string) => {
     setIsMenuOpen(false)
     const element = document.getElementById(sectionId)
     element?.scrollIntoView({ behavior: 'smooth' })
+    window.history.pushState({}, '', `#${sectionId}`)
   }
 
   const isActive = (sectionId: string) => {
@@ -44,22 +63,7 @@ export default function Navigation() {
         }`}
         aria-label="Toggle menu"
       >
-        {!isMenuOpen ? (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-6 h-6"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-            />
-          </svg>
-        ) : (
+        {isMenuOpen ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -74,16 +78,37 @@ export default function Navigation() {
               d="M6 18L18 6M6 6l12 12"
             />
           </svg>
+        ) : (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-6 h-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+            />
+          </svg>
         )}
       </button>
 
+      {/* Mobile Title */}
+      {mobileTitle && (
+        <h1 className="fixed top-16 left-5 text-2xl md:hidden text-orange-500 [writing-mode:sideways-lr]">
+          {mobileTitle}
+        </h1>
+      )}
+
       {/* Navigation */}
       <nav
-        className={`col-span-2 h-screen transition ${
-          isContactActive
-            ? 'bg-white text-black'
-            : 'bg-gray-600 md:bg-black text-black md:text-white'
-        } text-2xl md:text-base p-6 
+        className={`h-screen w-full md:w-desktop-nav-width text-2xl md:text-base p-6 fixed bg-gray-600 md:bg-transparent ${
+          hideOnDesktop ? 'md:hidden' : ''
+        }
+          ${isContactActive && 'text-black'}
         transform ${
           isMenuOpen ? 'translate-x-0' : '-translate-x-full'
         } md:translate-x-0 transition-transform

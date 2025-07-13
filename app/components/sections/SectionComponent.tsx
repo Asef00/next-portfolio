@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import SectionLayout from '@/app/components/layouts/SectionLayout'
 import SeeMoreLink from '@/app/components/ui/SeeMoreLink'
+import SectionTitle from './SectionTitle'
 
 interface SectionComponentProps {
   title: string
@@ -17,8 +18,8 @@ export default function SectionComponent({
 }: SectionComponentProps) {
   const leftContent = (
     <>
-      <h2 className="text-section-heading">{title}</h2>
-      <p className="text-lg mt-6">{description}</p>
+      <SectionTitle title={title} />
+      <p className="text-lg mt-6 pr-6 md:pr-0">{description}</p>
       <div className="mt-8">
         <SeeMoreLink
           href={`/portfolio?category=${slug}`}
