@@ -52,6 +52,7 @@ export default function About() {
       id="about"
       leftContent={leftContent}
       rightContent={rightContent}
+      reversOnMobile={false}
     />
   )
 }

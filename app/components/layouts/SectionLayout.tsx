@@ -32,9 +32,11 @@ export default function SectionLayout({
             } md:flex-row md:space-x-12 space-y-8 md:space-y-0 gap-9 md:gap-0`}
           >
             {/* Left Column */}
-            <div className="w-full md:w-1/2 flex justify-center flex-col">
-              {leftContent}
-            </div>
+            {leftContent && (
+              <div className="w-full md:w-1/2 flex justify-center flex-col">
+                {leftContent}
+              </div>
+            )}
             {/* Right Column */}
             {rightContent && (
               <div className="w-full md:w-1/2 flex justify-center flex-col">

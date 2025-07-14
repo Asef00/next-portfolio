@@ -10,7 +10,7 @@ export default function Contact() {
       alt="contact art"
       width={627}
       height={293}
-      className="absolute top-0 left-mobile-nav-width md:left-[308px]"
+      className="absolute top-0 left-mobile-nav-width md:left-[308px] hidden md:block"
       priority
     />
   )
@@ -19,7 +19,7 @@ export default function Contact() {
     <>
       <SectionTitle
         title={
-          <div className="flex items-center gap-8 text-black mb-6 md:mb-2.5">
+          <div className="flex items-center gap-2 md:gap-5 text-black mb-6 md:mb-2.5 max-w-[240px] md:max-w-none">
             Contact
             <span className="w-[180px] h-0.5 bg-black inline-block" />
             me
@@ -77,6 +77,13 @@ export default function Contact() {
           />
         </div>
       </div>
+      <Image
+        src="/contact.jpg"
+        alt="About me"
+        width={627}
+        height={293}
+        className="md:hidden mt-8"
+      />
     </>
   )
 
