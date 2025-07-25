@@ -16,15 +16,16 @@ export default function PortfolioLayout({
 
   return (
     <main>
-      <Navigation mobileTitle={title} hideOnDesktop />
-      <div className="flex pl-mobile-nav-width">
+      <Navigation mobileTitle={title}>
         {/* Back Link - now vertically centered */}
         <button
           onClick={() => router.back()}
-          className="fixed top-1/2 hidden md:inline font-bold hover:text-orange-500 hover:border-orange-500 transition-colors pb-[5px] border-b w-[100px] -ml-6 text-right"
+          className="font-bold hover:text-orange-500 hover:border-orange-500 transition-colors pb-[5px] border-b w-[100px] -ml-6 mt-8 text-right"
         >
           Back
         </button>
+      </Navigation>
+      <div className="flex pl-mobile-nav-width">
         <div className="container mx-auto py-16 md:py-[93px]">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Heading Column - now with orange text */}

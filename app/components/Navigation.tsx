@@ -3,14 +3,19 @@
 import { useState, useEffect } from 'react'
 import { useActiveSection } from '../hooks/useActiveSection'
 import { NavigationSection } from '@/app/types/section'
+import Link from 'next/link'
+
+interface NavigationProps {
+  mobileTitle?: string
+  hideOnDesktop?: boolean
+  children?: React.ReactNode
+}
 
 export default function Navigation({
   mobileTitle,
-  hideOnDesktop = false,
-}: {
-  mobileTitle?: string
-  hideOnDesktop?: boolean
-}) {
+  hideOnDesktop,
+  children,
+}: NavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [sections, setSections] = useState<NavigationSection[]>([])
   const activeSection = useActiveSection()
@@ -37,13 +42,6 @@ export default function Navigation({
       }, 100)
     }
   }, [sections])
-
-  const scrollToSection = (sectionId: string) => {
-    setIsMenuOpen(false)
-    const element = document.getElementById(sectionId)
-    element?.scrollIntoView({ behavior: 'smooth' })
-    window.history.pushState({}, '', `#${sectionId}`)
-  }
 
   const isActive = (sectionId: string) => {
     return activeSection === sectionId
@@ -105,7 +103,7 @@ export default function Navigation({
 
       {/* Navigation */}
       <nav
-        className={`h-screen w-full md:w-desktop-nav-width text-2xl md:text-base p-6 fixed bg-gray-600 md:bg-transparent ${
+        className={`fixed flex flex-col justify-center h-full w-full md:w-desktop-nav-width text-2xl md:text-base p-6  bg-gray-600 md:bg-transparent ${
           hideOnDesktop ? 'md:hidden' : ''
         }
           ${isContactActive && 'text-black'}
@@ -114,35 +112,36 @@ export default function Navigation({
         } md:translate-x-0 transition-transform
         ${isMenuOpen ? 'z-40' : 'z-30'}`}
       >
-        <div className="flex flex-col h-full md:justify-center justify-end">
+        <div className="flex flex-col justify-end md:justify-center">
           <div className="space-y-6">
-            <button
-              onClick={() => scrollToSection('about')}
+            <Link
+              href="/#about"
               className={`block w-full text-left ${isActive('about')}`}
             >
               About
-            </button>
+            </Link>
 
             <div className="space-y-3">
               {sections.map((section) => (
-                <button
+                <Link
                   key={section.slug}
-                  onClick={() => scrollToSection(section.slug)}
+                  href={`/#${section.slug}`}
                   className={`block w-full text-left ${isActive(section.slug)}`}
                 >
                   {section.title}
-                </button>
+                </Link>
               ))}
             </div>
 
-            <button
-              onClick={() => scrollToSection('contact')}
+            <Link
+              href="/#contact"
               className={`block w-full text-left ${isActive('contact')}`}
             >
               Contact me
-            </button>
+            </Link>
           </div>
         </div>
+        {children}
       </nav>
     </>
   )
