@@ -43,6 +43,10 @@ export default function Navigation({
     }
   }, [sections])
 
+  const closeMobileMenu = () => {
+    setIsMenuOpen(false)
+  }
+
   const isActive = (sectionId: string) => {
     return activeSection === sectionId
       ? 'text-orange-500'
@@ -116,6 +120,7 @@ export default function Navigation({
           <div className="space-y-6">
             <Link
               href="/#about"
+              onClick={closeMobileMenu}
               className={`block w-full text-left ${isActive('about')}`}
             >
               About
@@ -126,6 +131,7 @@ export default function Navigation({
                 <Link
                   key={section.slug}
                   href={`/#${section.slug}`}
+                  onClick={closeMobileMenu}
                   className={`block w-full text-left ${isActive(section.slug)}`}
                 >
                   {section.title}
@@ -135,6 +141,7 @@ export default function Navigation({
 
             <Link
               href="/#contact"
+              onClick={closeMobileMenu}
               className={`block w-full text-left ${isActive('contact')}`}
             >
               Contact me
