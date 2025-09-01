@@ -41,7 +41,7 @@ export default function Sections({ sections }: SectionsProps) {
               //   pinSpacing: false,
               //   snap: 1 / (sections.length + 1), // evenly distributed snap points
               //   scrub: true,
-              markers: true,
+              // markers: true,
               toggleActions: 'play reverse play reverse',
             },
           }
