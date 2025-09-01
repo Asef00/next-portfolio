@@ -1,11 +1,8 @@
 import { getSections } from '@/app/lib/sections'
 import Navigation from '@/app/components/Navigation'
-import SectionComponent from '@/app/components/sections/SectionComponent'
-import { Section } from './types/section'
 import Hero from '@/app/components/sections/Hero'
-import About from './components/sections/About'
-import Contact from './components/sections/Contact'
 import { cookies } from 'next/headers'
+import Sections from './components/sections/Sections'
 
 // Force dynamic rendering to avoid database access during build
 export const dynamic = 'force-dynamic'
@@ -21,19 +18,7 @@ export default async function Home() {
       <Navigation />
       <main>
         {!heroShown && <Hero />}
-        <div className="h-screen overflow-y-scroll snap-y snap-mandatory">
-          <About />
-          {sections.map((section: Section) => (
-            <SectionComponent
-              key={section.id}
-              title={section.title}
-              description={section.description}
-              image={section.image || undefined}
-              slug={section.slug}
-            />
-          ))}
-          <Contact />
-        </div>
+        <Sections sections={sections} />
       </main>
     </>
   )

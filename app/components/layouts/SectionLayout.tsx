@@ -1,7 +1,3 @@
-'use client'
-
-import AnimatedSection from './AnimatedSection'
-
 interface SectionLayoutProps {
   id: string
   leftContent: React.ReactNode
@@ -20,32 +16,31 @@ export default function SectionLayout({
   reversOnMobile = true,
 }: SectionLayoutProps) {
   return (
-    <div
-      className={`h-screen pl-mobile-nav-width md:pl-desktop-nav-width snap-start flex items-center justify-center overflow-hidden ${className}`}
+    <section
+      id={id}
+      className={`pl-mobile-nav-width md:pl-desktop-nav-width overflow-hidden ${className}`}
     >
       {rootContent}
-      <AnimatedSection id={id}>
-        <div className="container ml-auto">
-          <div
-            className={`flex ${
-              reversOnMobile ? 'flex-col-reverse' : 'flex-col'
-            } md:flex-row md:space-x-12 space-y-8 md:space-y-0 gap-9 md:gap-0`}
-          >
-            {/* Left Column */}
-            {leftContent && (
-              <div className="w-full md:w-1/2 flex justify-center flex-col">
-                {leftContent}
-              </div>
-            )}
-            {/* Right Column */}
-            {rightContent && (
-              <div className="w-full md:w-1/2 flex justify-center flex-col">
-                {rightContent}
-              </div>
-            )}
-          </div>
+      <div className="container ml-auto h-screen flex ">
+        <div
+          className={`flex section ${
+            reversOnMobile ? 'flex-col-reverse' : 'flex-col'
+          } md:flex-row md:space-x-12 space-y-8 md:space-y-0 gap-9 md:gap-0`}
+        >
+          {/* Left Column */}
+          {leftContent && (
+            <div className="w-full md:w-1/2 flex justify-center flex-col">
+              {leftContent}
+            </div>
+          )}
+          {/* Right Column */}
+          {rightContent && (
+            <div className="w-full md:w-1/2 flex justify-center flex-col">
+              {rightContent}
+            </div>
+          )}
         </div>
-      </AnimatedSection>
-    </div>
+      </div>
+    </section>
   )
 }
