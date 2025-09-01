@@ -13,6 +13,7 @@
     "create:admin": "tsx scripts/create-admin.ts"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.2",
     "@prisma/client": "^6.7.0",
     "@tiptap/extension-image": "^2.11.5",
     "@tiptap/extension-link": "^2.11.5",
@@ -23,7 +24,6 @@
     "@tiptap/starter-kit": "^2.11.5",
     "bcryptjs": "^3.0.0",
     "gsap": "^3.12.7",
-    "motion": "^12.12.1",
     "next": "15.1.7",
     "next-auth": "^4.24.11",
     "react": "^19.0.0",
