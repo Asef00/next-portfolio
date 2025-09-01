@@ -15,7 +15,7 @@ export default async function Home() {
 
   return (
     <>
-      <Navigation />
+      <Navigation sections={sections} />
       <main>
         {!heroShown && <Hero />}
         <Sections sections={sections} />

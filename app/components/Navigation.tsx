@@ -9,27 +9,17 @@ interface NavigationProps {
   mobileTitle?: string
   hideOnDesktop?: boolean
   children?: React.ReactNode
+  sections?: NavigationSection[]
 }
 
 export default function Navigation({
   mobileTitle,
   hideOnDesktop,
   children,
+  sections,
 }: NavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [sections, setSections] = useState<NavigationSection[]>([])
   const activeSection = useActiveSection()
-
-  useEffect(() => {
-    // Fetch sections on client side
-    async function fetchSections() {
-      const response = await fetch('/api/sections')
-      const data = await response.json()
-      setSections(data)
-    }
-
-    fetchSections()
-  }, [])
 
   useEffect(() => {
     // Scroll to section if hash is present on initial load
