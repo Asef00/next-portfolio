@@ -16,7 +16,7 @@ export default function Navigation({
   mobileTitle,
   hideOnDesktop,
   children,
-  sections,
+  sections = [],
 }: NavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const activeSection = useActiveSection()
