@@ -1,6 +1,6 @@
-import type { Config } from 'tailwindcss';
+import type { Config } from 'tailwindcss'
 
-const config: Config = {
+export default {
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -8,25 +8,19 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      gridTemplateColumns: {
-        '13': 'repeat(13, minmax(0, 1fr))',
-      },
       colors: {
-        blue: {
-          400: '#2589FE',
-          500: '#0070F3',
-          600: '#2F6FEB',
-        },
+        background: 'var(--background)',
+        foreground: 'var(--foreground)',
       },
-    },
-    keyframes: {
-      shimmer: {
-        '100%': {
-          transform: 'translateX(100%)',
-        },
+      fontSize: {
+        'section-heading': '80px',
+        'portfolio-heading': '42px',
+      },
+      spacing: {
+        'mobile-nav-width': '72px',
+        'desktop-nav-width': '200px',
       },
     },
   },
-  plugins: [require('@tailwindcss/forms')],
-};
-export default config;
+  plugins: [],
+} satisfies Config
